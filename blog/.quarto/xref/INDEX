@@ -1,0 +1,17 @@
+{
+  "posts/001-projeto-python/index.qmd": {
+    "index.html": "c519ffb1"
+  },
+  "about.qmd": {
+    "about.html": "dd1f5d47"
+  },
+  "index.qmd": {
+    "index.html": "b8e9e873"
+  },
+  "posts.qmd": {
+    "posts.html": "694f9690"
+  },
+  "posts/002-docker-python/index.qmd": {
+    "index.html": "78fb6b95"
+  }
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Engenharia dos Fluxos",
+    "section": "",
+    "text": "Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.\nOs conteúdos exploram temas como:\n\nPython e Engenharia de Software\nDados e Analytics\nDevOps e Observabilidade\nInteligência Artificial\nArquitetura de Sistemas\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\nA proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais.\n\n\n\nAmbiente Python Moderno\nContainers e Docker\nPerformance e Profiling\nAPIs com FastAPI\nDados com Pandas e Spark\nObservabilidade\nInteligência Artificial"
+  },
+  {
+    "objectID": "index.html#explorando-sistemas-complexos-através-do-python",
+    "href": "index.html#explorando-sistemas-complexos-através-do-python",
+    "title": "Engenharia dos Fluxos",
+    "section": "",
+    "text": "Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.\nOs conteúdos exploram temas como:\n\nPython e Engenharia de Software\nDados e Analytics\nDevOps e Observabilidade\nInteligência Artificial\nArquitetura de Sistemas\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\nA proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais.\n\n\n\nAmbiente Python Moderno\nContainers e Docker\nPerformance e Profiling\nAPIs com FastAPI\nDados com Pandas e Spark\nObservabilidade\nInteligência Artificial"
+  },
+  {
+    "objectID": "index.html#artigos",
+    "href": "index.html#artigos",
+    "title": "Engenharia dos Fluxos",
+    "section": "Artigos",
+    "text": "Artigos"
+  },
+  {
+    "objectID": "posts/001-projeto-python/index.html",
+    "href": "posts/001-projeto-python/index.html",
+    "title": "Projeto Python: Explorando sistemas complexos",
+    "section": "",
+    "text": "A questão do ambiente de desenvolvimento em Python\nAs tecnologias digitais estão em constante evolução e precisamos tentar acompanhá-las na perspectiva de solução de problemas ou de conquista de objetivos.\nA ideia deste blog foi compartilhar uma jornada de atualização de conhecimento, sob o viés do Python, uma linguagem que hoje é fundamental para quem trabalha com análise de dados e inteligência artificial. Mesmo que, para prototipação, seja uma alternativa popular para se comunicar com a máquina.\nNa era da informação, não se exclui também a comunicação; não me refiro às telecomunicações, mas à comunicação social, que hoje é mediada por meio das máquinas e, muitas vezes, ela representa também o interlocutor, a ponto de interromper nossos pensamentos por intrusão de correção ou sugestão do que queremos falar.\nMeu olhar para a tecnologia nunca foi apenas técnico, mas também comunicacional, como uma forma multimídia de troca de informações e de entretenimento. Porém, é sabido que muitos dos fracassos em sistemas de informação não estão relacionados com o tecnológico, mas com a habilidade humana de identificar as soluções e utilizar a tecnologia como ela deve ser, como ferramenta para fazer mais e melhor.\nUma vez, alguém me disse uma analogia, que desenvolver software é tipo construir uma casa, tem que fazer a fundação, construir paredes, separar áreas etc. Porém, na época, já disse que não concordava porque, apesar de algumas semelhanças, a principal distinção é a sua natureza líquida, ou seja, nada é feito para durar muito tempo. Característica da metamorfose do hipertexto, sempre em mutação. Ou seja, uma casa, quando você constrói uma parede, do nada ela não deixa de existir, ou ainda, começa a mudar seu material e você rapidamente precisa se adaptar porque senão sua construção vai ceder.\nÉ assim com o digital, construir um software, a menos que você tenha controle de tudo, o que hoje é muito difícil, será muito comum que a atualização de uma linguagem de programação faça parar de funcionar o sistema. E não basta dizer que não vai atualizar; caso contrário, logo vai parar de funcionar, de qualquer forma, pois o sistema não vai conseguir responder às demandas atuais. E quem trabalha na área, atualizar-se é uma constante e isso é algo que nos faz um pouco mais tolerantes ao imperfeito e acabar enxergando beleza na entropia e também como uma oportunidade de realizar algum trabalho.\n\n\nAbordagem moderna do ambiente de desenvolvimento em Python\nEste post vem no intuito de acompanhar a evolução do ambiente de desenvolvimento em Python, cujo até pouco tempo usávamos o pip, venv (ambiente virtual) e outra ferramentas em conjunto, mas que agora, para responder melhor em projetos de machine learning (aprendizado de máquina), existe a proposta do uv, que segundo o site oficial, é um pacote e um gerenciador de projeto, escrito em Rust com o objetivo de substituir a necessidade de gerenciar vários recursos com uma única ferramenta e mais rápida.\nA instalação é simples, vou apresentar aqui o comando para uso no Linux Ubuntu.\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nÉ uma boa prática verificar a versão instalada;\nuv --version\nPara iniciar um novo ambiente de desenvolvimento:\nuv init --app nome-projeto-python\nO resultado é algo assim:\nnome-projeto-python/\n├── .python-version\n├── main.py\n├── pyproject.toml\n├── README.md\n└── src/\nPara criar o ambiente virtual:\nuv sync\nA ativação segue o mesmo comando conhecido para o venv:\nsource .venv/bin/activate\nPara instalar pacotes, não se utiliza o pip, mas o comando add, como no exemplo abaixo:\nuv add pandas rich psutil\nPara instalar ferramentas de desenvolvimento:\nuv add --dev pytest ruff ipykernel\n\n\nSolução\nuv substitui boa parte do fluxo tradicional com pip, venv e requirements.txt.\nEm vez de usar:\npython -m venv .venv\nsource .venv/bin/activate\npip install pandas\npip freeze &gt; requirements.txt\nCom o uv fica assim:\nuv add pandas\nuv sync\nuv run python arquivo.py\nO pyproject.toml agora é o centro do projeto, nele declaramos o nome, versão, dependências e ferramentas.\nPara rodar o projeto, use o comando\nuv run main.py\n\n\nConsiderações finais\nQuando precisamos de vários passos para realizar algo em sistemas de informação, é natural que alguma ferramenta ou estratégia de se diga mais eficiente surja, pois afinal, é assim que a tecnologia evolui, respondendo a problemas que se apresentam à medida em que novos desafios surgem em diversos contextos.\nPercebo que alguns projetos que usam machine learning têm adotado o uv, justamente por essa suposta facilidade, mas com ela vem a questão de não esquecer do que ela está fazendo por nós, para que não fiquemos dependentes.\nMe parece que quanto mais a tecnologia digital evolui, mas importante tem se tornado o estudo sobre os princípios como matemática, lógica, engenharia de software, resolução de problemas, estratégias de comunicação, filosofia, dentre outras disciplinas.\nIsso levanta uma questão que sempre me intrigou, que na verdade não existe mais somente a área de TI, mas a computação que está presente em todas as áreas e profissões. Percebo que todas as áreas de conhecimento estão tendendo a ter seu segmento neste campo."
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Artigos",
+    "section": "",
+    "text": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers\n\n\nPrimeiros passos para usar Docker com Python, incluindo construção de imagens, execução de containers e melhores práticas para desenvolvimento e implantação.\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProjeto Python: Explorando sistemas complexos\n\n\n\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/002-docker-python/index.html",
+    "href": "posts/002-docker-python/index.html",
+    "title": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers",
+    "section": "",
+    "text": "A complexidade do desenvolvimento de aplicações digitais requer, além de manter-se atualizado, propor arquiteturas resilientes às constantes transformações desse universo digital.\nA metamorfose é um dos princípios do hipertexto sugeridos por Pierre Lévy em seu livro “As Tecnologias da Inteligência”.\nSegundo o autor, a rede hipertextual é dinâmica e em constante transformação, podendo ser alterada, complementada e atualizada a qualquer momento.\nEssa característica representa um desafio no desenvolvimento de sistemas de informação, que se tornam, cada vez mais, mediadores entre vários outros sistemas responsáveis pela produção e troca de informações.\nUm dos desafios de infraestrutura é viabilizar a implantação dos sistemas de forma compatível com o ambiente de desenvolvimento, pois, ao apenas transportar arquivos de um computador para outro, o resultado nem sempre é o esperado.\nA partir desse desafio, surgiram as máquinas virtuais, que, embora continuem sendo fundamentais em diversos cenários, mostraram-se pesadas para ciclos rápidos de desenvolvimento e implantação.\nComo resposta a essa limitação, consolidou-se o uso de containers, que pode ser compreendido como uma forma de isolamento em nível de sistema operacional. Essa abordagem permite isolar aplicações e suas dependências sem a necessidade de virtualizar um computador inteiro, tornando os ambientes mais leves, reproduzíveis e consistentes."
+  },
+  {
+    "objectID": "posts/002-docker-python/index.html#introdução",
+    "href": "posts/002-docker-python/index.html#introdução",
+    "title": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers",
+    "section": "",
+    "text": "A complexidade do desenvolvimento de aplicações digitais requer, além de manter-se atualizado, propor arquiteturas resilientes às constantes transformações desse universo digital.\nA metamorfose é um dos princípios do hipertexto sugeridos por Pierre Lévy em seu livro “As Tecnologias da Inteligência”.\nSegundo o autor, a rede hipertextual é dinâmica e em constante transformação, podendo ser alterada, complementada e atualizada a qualquer momento.\nEssa característica representa um desafio no desenvolvimento de sistemas de informação, que se tornam, cada vez mais, mediadores entre vários outros sistemas responsáveis pela produção e troca de informações.\nUm dos desafios de infraestrutura é viabilizar a implantação dos sistemas de forma compatível com o ambiente de desenvolvimento, pois, ao apenas transportar arquivos de um computador para outro, o resultado nem sempre é o esperado.\nA partir desse desafio, surgiram as máquinas virtuais, que, embora continuem sendo fundamentais em diversos cenários, mostraram-se pesadas para ciclos rápidos de desenvolvimento e implantação.\nComo resposta a essa limitação, consolidou-se o uso de containers, que pode ser compreendido como uma forma de isolamento em nível de sistema operacional. Essa abordagem permite isolar aplicações e suas dependências sem a necessidade de virtualizar um computador inteiro, tornando os ambientes mais leves, reproduzíveis e consistentes."
+  },
+  {
+    "objectID": "posts/002-docker-python/index.html#desenvolvimento",
+    "href": "posts/002-docker-python/index.html#desenvolvimento",
+    "title": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers",
+    "section": "Desenvolvimento",
+    "text": "Desenvolvimento\nEste artigo apresenta, em Python, a criação de um container, uma solução comumente utilizada no desenvolvimento de aplicações digitais.\nNesse contexto, compreender Docker não significa apenas aprender uma ferramenta, mas entender uma resposta da engenharia de software para um problema recorrente: tornar aplicações reproduzíveis em ambientes distintos.\nÉ sempre uma boa prática criar ambientes virtuais para desenvolvimento em Python; a abordagem mais moderna é o uso do uv, um gerenciador de projetos e pacotes Python escrito em Rust, com o objetivo de eliminar a necessidade de usar diversas ferramentas, oferecendo maior desempenho e simplificando o gerenciamento do projeto.\nA instalação é simples. A seguir, o comando para uso no Ubuntu.\ncurl -LsSf https://astral.sh/uv/install.sh | sh\nÉ uma boa prática verificar a versão instalada.\nuv --version\nCaso já tenha o uv instalado, basta iniciar um novo ambiente de desenvolvimento:\nuv init --app nome-projeto-python\nAcesse a pasta criada:\ncd nome-projeto-python\nDepois adicione as bibliotecas fastapi e uvicorn para desenvolvimento back-end:\nuv add fastapi uvicorn\nO próximo passo é criar uma API Python simples. Para isto, substitua o conteúdo de main.py por:\nfrom fastapi import FastAPI\nimport platform\nimport os\n\napp = FastAPI()\n\n\n@app.get(\"/\")\ndef home():\n    return {\n        \"message\": \"Python rodando dentro do Docker\",\n        \"python_version\": platform.python_version(),\n        \"hostname\": os.uname().nodename,\n    }\n\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}\nAgora é o momento de testar sem Docker:\nuv run uvicorn main:app --reload\nE abrir o endereço em um navegador (browser): http://localhost:8000\nSincronize o ambiente virtual com o comando:\nuv sync\nApós esse comando, o arquivo uv.lock será criado e poderá ser utilizado na construção da imagem."
+  },
+  {
+    "objectID": "posts/002-docker-python/index.html#criando-o-dockerfile",
+    "href": "posts/002-docker-python/index.html#criando-o-dockerfile",
+    "title": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers",
+    "section": "Criando o Dockerfile",
+    "text": "Criando o Dockerfile\nAinda na pasta do projeto “nome-projeto-python”, crie o arquivo Dockerfile:\ntouch Dockerfile\nAbra-o e o conteúdo dele segue estrutura semelhante a esta:\nFROM python:3.12-slim\n\nWORKDIR /app\n\nCOPY pyproject.toml uv.lock ./\n\nRUN pip install uv \\\n    && uv sync --frozen --no-dev\n\nCOPY . .\n\nEXPOSE 8000\n\nCMD [\"uv\", \"run\", \"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\nEm seguida, cria-se o arquivo .dockerignore, que indica quais arquivos e diretórios não devem ser incluídos na construção da imagem Docker.\ntouch .dockerignore\nAbra-o e adicione o seguinte conteúdo:\n.venv\n__pycache__\n*.pyc\n.git\n.gitignore\nConcluída essa configuração inicial, é necessário construir a imagem com o comando:\ndocker build -t nome-projeto-python .\nPara rodar o container:\ndocker run --rm -p 8000:8000 nome-projeto-python\nE acesse o seguinte endereço em um navegador de preferência: http://localhost:8000/health\nPara observar o comportamento do container em execução, utilize, em outro terminal, os comandos:\ndocker ps\ndocker images\ndocker logs &lt;container_id&gt;\ndocker stats\n\n\n\n\n\n\nTip\n\n\n\nObservação:\nO comando docker images permite verificar se a imagem foi construída corretamente e se está disponível para execução.\n\n\nCom esses passos, a imagem Docker é construída e a aplicação pode ser executada em um container de forma consistente em diferentes ambientes.\n\n\n\n\n\n\nNoteAlguns conceitos relevantes:\n\n\n\n\n\n\n\n\n\n\nConceito\nDefinição\n\n\n\n\nImagem\nPacote imutável da aplicação.\n\n\nContainer\nProcesso em execução baseado em uma imagem.\n\n\nDockerfile\nReceita utilizada para construir a imagem.\n\n\n.dockerignore\nArquivos e diretórios excluídos da construção da imagem.\n\n\nPort mapping\nAssociação entre a porta do hospedeiro e a porta do container."
+  },
+  {
+    "objectID": "posts/002-docker-python/index.html#ambiente-utilizado",
+    "href": "posts/002-docker-python/index.html#ambiente-utilizado",
+    "title": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers",
+    "section": "Ambiente utilizado",
+    "text": "Ambiente utilizado\n\nUbuntu 24.04\nPython 3.12\nuv\nDocker 28.x\nFastAPI"
+  },
+  {
+    "objectID": "posts/002-docker-python/index.html#considerações-finais",
+    "href": "posts/002-docker-python/index.html#considerações-finais",
+    "title": "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers",
+    "section": "Considerações finais",
+    "text": "Considerações finais\nO uso de containers não elimina a necessidade de compreender o ambiente de execução da aplicação. Pelo contrário: ele torna essa compreensão ainda mais importante, uma vez que infraestrutura, sistema operacional, bibliotecas e dependências passam a fazer parte do próprio ciclo de desenvolvimento.\nAssim como discutido no início deste artigo, a metamorfose dos sistemas digitais não está apenas na evolução das linguagens ou das aplicações, mas também na forma como elas são distribuídas, executadas e mantidas ao longo do tempo. Docker representa uma resposta da engenharia de software a essa transformação contínua, permitindo maior previsibilidade em um ambiente naturalmente dinâmico."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre",
+    "section": "",
+    "text": "O Engenharia dos Fluxos é um projeto dedicado ao estudo de sistemas complexos por meio da interseção entre comunicação, dados, engenharia de software e inteligência artificial.\nA proposta nasceu da percepção de que os desafios tecnológicos raramente são apenas técnicos. A forma como pessoas, equipes, processos e sistemas se comunicam influencia diretamente a arquitetura das soluções construídas.\n\n\n\nPython e Engenharia de Software\nDados e Analytics\nArquitetura de Sistemas\nDevOps e Observabilidade\nInteligência Artificial\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\n\n\n\nDaniela Carvalho atua na área de dados e tecnologia, possui graduação em Comunicação Social, habilitação em Publicidade e Propaganda, graduação em Análise e Desenvolvimento de Sistemas, mestrado em Multimeios e doutorado em Artes. Pós-doutorado em Inteligência Artificial. Certificação ITIL V4 Foundation e experiência em áreas das Ciências da Computação e Ciências da Comunicação, com ênfase em Hipermídia, atuando principalmente nos seguintes temas: criatividade computacional, algoritmos, engenharia de software, segurança da informação, IHC, jogos digitais, aplicações web, multimídia e áudio digital. Curriculo Lattes\nSeu interesse está na compreensão dos fluxos de informação que conectam pessoas, processos e sistemas, explorando como essas conexões influenciam a construção de produtos, organizações e soluções digitais.\n\n\n\nDocumentar experimentos, pesquisas, laboratórios e estudos que contribuam para uma visão integrada entre tecnologia, comunicação e engenharia."
+  },
+  {
+    "objectID": "about.html#temas-abordados",
+    "href": "about.html#temas-abordados",
+    "title": "Sobre",
+    "section": "",
+    "text": "Python e Engenharia de Software\nDados e Analytics\nArquitetura de Sistemas\nDevOps e Observabilidade\nInteligência Artificial\nProcessos Organizacionais\nComunicação em Sistemas Complexos"
+  },
+  {
+    "objectID": "about.html#sobre-a-autora",
+    "href": "about.html#sobre-a-autora",
+    "title": "Sobre",
+    "section": "",
+    "text": "Daniela Carvalho atua na área de dados e tecnologia, possui graduação em Comunicação Social, habilitação em Publicidade e Propaganda, graduação em Análise e Desenvolvimento de Sistemas, mestrado em Multimeios e doutorado em Artes. Pós-doutorado em Inteligência Artificial. Certificação ITIL V4 Foundation e experiência em áreas das Ciências da Computação e Ciências da Comunicação, com ênfase em Hipermídia, atuando principalmente nos seguintes temas: criatividade computacional, algoritmos, engenharia de software, segurança da informação, IHC, jogos digitais, aplicações web, multimídia e áudio digital. Curriculo Lattes\nSeu interesse está na compreensão dos fluxos de informação que conectam pessoas, processos e sistemas, explorando como essas conexões influenciam a construção de produtos, organizações e soluções digitais."
+  },
+  {
+    "objectID": "about.html#objetivo-do-projeto",
+    "href": "about.html#objetivo-do-projeto",
+    "title": "Sobre",
+    "section": "",
+    "text": "Documentar experimentos, pesquisas, laboratórios e estudos que contribuam para uma visão integrada entre tecnologia, comunicação e engenharia."
+  }
+]

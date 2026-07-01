@@ -1,0 +1,31 @@
+---
+title: "Sobre"
+---
+
+# Sobre o Engenharia dos Fluxos
+
+O Engenharia dos Fluxos é um projeto dedicado ao estudo de sistemas complexos por meio da interseção entre comunicação, dados, engenharia de software e inteligência artificial.
+
+A proposta nasceu da percepção de que os desafios tecnológicos raramente são apenas técnicos. A forma como pessoas, equipes, processos e sistemas se comunicam influencia diretamente a arquitetura das soluções construídas.
+
+## Temas abordados
+
+- Python e Engenharia de Software
+- Dados e Analytics
+- Arquitetura de Sistemas
+- DevOps e Observabilidade
+- Inteligência Artificial
+- Processos Organizacionais
+- Comunicação em Sistemas Complexos
+
+## Sobre a autora
+
+Daniela Carvalho atua na área de dados e tecnologia, possui graduação em Comunicação Social, habilitação em Publicidade e Propaganda, graduação em Análise e Desenvolvimento de Sistemas, mestrado em Multimeios e doutorado em Artes. Pós-doutorado em Inteligência Artificial. Certificação ITIL V4 Foundation e experiência em áreas das Ciências da Computação e Ciências da Comunicação, com ênfase em Hipermídia, atuando principalmente nos seguintes temas: criatividade computacional, algoritmos, engenharia de software, segurança da informação, IHC, jogos digitais, aplicações web, multimídia e áudio digital. [Curriculo Lattes](http://lattes.cnpq.br/6174708363093351)
+
+
+
+Seu interesse está na compreensão dos fluxos de informação que conectam pessoas, processos e sistemas, explorando como essas conexões influenciam a construção de produtos, organizações e soluções digitais.
+
+## Objetivo do projeto
+
+Documentar experimentos, pesquisas, laboratórios e estudos que contribuam para uma visão integrada entre tecnologia, comunicação e engenharia.

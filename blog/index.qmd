@@ -1,0 +1,40 @@
+---
+title: "Engenharia dos Fluxos"
+
+listing:
+  id: artigos
+  contents: posts
+  sort: "date desc"
+  type: default
+---
+
+## Explorando sistemas complexos através do Python
+
+Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.
+
+Os conteúdos exploram temas como:
+
+- Python e Engenharia de Software
+- Dados e Analytics
+- DevOps e Observabilidade
+- Inteligência Artificial
+- Arquitetura de Sistemas
+- Processos Organizacionais
+- Comunicação em Sistemas Complexos
+
+A proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais.
+
+### Séries em desenvolvimento
+
+- Ambiente Python Moderno
+- Containers e Docker
+- Performance e Profiling
+- APIs com FastAPI
+- Dados com Pandas e Spark
+- Observabilidade
+- Inteligência Artificial
+
+## Artigos
+
+::: (#artigos}
+:::

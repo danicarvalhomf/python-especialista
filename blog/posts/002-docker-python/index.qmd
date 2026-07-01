@@ -1,0 +1,199 @@
+---
+title: "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers"
+date: today
+categories:
+  - python
+  - docker
+  - devops
+  - containers
+description: "Primeiros passos para usar Docker com Python, incluindo construção de imagens, execução de containers e melhores práticas para desenvolvimento e implantação."
+---
+## Introdução
+
+A complexidade do desenvolvimento de aplicações digitais requer, além de manter-se atualizado, propor arquiteturas resilientes às constantes transformações desse universo digital.
+
+A metamorfose é um dos princípios do hipertexto sugeridos por Pierre Lévy em seu livro "As Tecnologias da Inteligência".
+
+Segundo o autor, a rede hipertextual é dinâmica e em constante transformação, podendo ser alterada, complementada e atualizada a qualquer momento.
+
+Essa característica representa um desafio no desenvolvimento de sistemas de informação, que se tornam, cada vez mais, mediadores entre vários outros sistemas responsáveis pela produção e troca de informações.
+
+Um dos desafios de infraestrutura é viabilizar a implantação dos sistemas de forma compatível com o ambiente de desenvolvimento, pois, ao apenas transportar arquivos de um computador para outro, o resultado nem sempre é o esperado.
+
+A partir desse desafio, surgiram as máquinas virtuais, que, embora continuem sendo fundamentais em diversos cenários, mostraram-se pesadas para ciclos rápidos de desenvolvimento e implantação.
+
+Como resposta a essa limitação, consolidou-se o uso de containers, que pode ser compreendido como uma forma de isolamento em nível de sistema operacional. Essa abordagem permite isolar aplicações e suas dependências sem a necessidade de virtualizar um computador inteiro, tornando os ambientes mais leves, reproduzíveis e consistentes.
+
+
+## Desenvolvimento
+
+Este artigo apresenta, em Python, a criação de um container, uma solução comumente utilizada no desenvolvimento de aplicações digitais. 
+
+Nesse contexto, compreender [Docker](https://www.docker.com/) não significa apenas aprender uma ferramenta, mas entender uma resposta da engenharia de software para um problema recorrente: tornar aplicações reproduzíveis em ambientes distintos.
+
+É sempre uma boa prática criar ambientes virtuais para desenvolvimento em Python; a abordagem mais moderna é o uso do [`uv`](https://docs.astral.sh/uv/), um gerenciador de projetos e pacotes Python escrito em Rust, com o objetivo de eliminar a necessidade de usar diversas ferramentas, oferecendo maior desempenho e simplificando o gerenciamento do projeto.
+
+A instalação é simples. A seguir, o comando para uso no Ubuntu.
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+É uma boa prática verificar a versão instalada.
+```bash
+uv --version
+```
+
+Caso já tenha o `uv` instalado, basta iniciar um novo ambiente de desenvolvimento:
+```bash
+uv init --app nome-projeto-python
+```
+
+Acesse a pasta criada:
+```bash
+cd nome-projeto-python
+```
+
+Depois adicione as bibliotecas `fastapi` e `uvicorn` para desenvolvimento back-end:
+```bash
+uv add fastapi uvicorn
+```
+
+O próximo passo é criar uma API Python simples. Para isto, substitua o conteúdo de `main.py` por:
+
+```python
+from fastapi import FastAPI
+import platform
+import os
+
+app = FastAPI()
+
+
+@app.get("/")
+def home():
+    return {
+        "message": "Python rodando dentro do Docker",
+        "python_version": platform.python_version(),
+        "hostname": os.uname().nodename,
+    }
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+```
+
+Agora é o momento de testar sem Docker:
+
+```bash
+uv run uvicorn main:app --reload
+```
+
+E abrir o endereço em um navegador (browser):
+<http://localhost:8000>
+
+Sincronize o ambiente virtual com o comando:
+```bash
+uv sync
+```
+
+Após esse comando, o arquivo `uv.lock` será criado e poderá ser utilizado na construção da imagem.
+
+
+## Criando o Dockerfile
+
+Ainda na pasta do projeto "nome-projeto-python", crie o arquivo `Dockerfile`:
+```bash
+touch Dockerfile
+```
+
+Abra-o e o conteúdo dele segue estrutura semelhante a esta:
+
+```dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY pyproject.toml uv.lock ./
+
+RUN pip install uv \
+    && uv sync --frozen --no-dev
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+```
+
+Em seguida, cria-se o arquivo `.dockerignore`, que indica quais arquivos e diretórios não devem ser incluídos na construção da imagem Docker.
+```bash
+touch .dockerignore
+```
+
+Abra-o e adicione o seguinte conteúdo:
+```
+.venv
+__pycache__
+*.pyc
+.git
+.gitignore
+``` 
+
+Concluída essa configuração inicial, é necessário construir a imagem com o comando:
+```bash
+docker build -t nome-projeto-python .
+```
+
+Para rodar o container:
+```bash
+docker run --rm -p 8000:8000 nome-projeto-python
+```
+
+E acesse o seguinte endereço em um navegador de preferência:
+<http://localhost:8000/health>
+
+
+Para observar o comportamento do container em execução, utilize, em outro terminal, os comandos:
+```bash
+docker ps
+docker images
+docker logs <container_id>
+docker stats
+```
+
+::: {.callout-tip}
+
+**Observação:** 
+
+O comando `docker images` permite verificar se a imagem foi construída corretamente e se está disponível para execução.
+:::
+
+Com esses passos, a imagem Docker é construída e a aplicação pode ser executada em um container de forma consistente em diferentes ambientes.
+
+::: {.callout-note}
+
+## Alguns conceitos relevantes:
+
+| Conceito | Definição |
+|-----------|-----------|
+| Imagem | Pacote imutável da aplicação. |
+| Container | Processo em execução baseado em uma imagem. |
+| Dockerfile | Receita utilizada para construir a imagem. |
+| `.dockerignore` | Arquivos e diretórios excluídos da construção da imagem. |
+| Port mapping | Associação entre a porta do hospedeiro e a porta do container. |
+
+:::
+
+## Ambiente utilizado
+- Ubuntu 24.04
+- Python 3.12
+- uv
+- Docker 28.x
+- FastAPI
+
+## Considerações finais
+
+O uso de containers não elimina a necessidade de compreender o ambiente de execução da aplicação. Pelo contrário: ele torna essa compreensão ainda mais importante, uma vez que infraestrutura, sistema operacional, bibliotecas e dependências passam a fazer parte do próprio ciclo de desenvolvimento.
+
+Assim como discutido no início deste artigo, a metamorfose dos sistemas digitais não está apenas na evolução das linguagens ou das aplicações, mas também na forma como elas são distribuídas, executadas e mantidas ao longo do tempo. Docker representa uma resposta da engenharia de software a essa transformação contínua, permitindo maior previsibilidade em um ambiente naturalmente dinâmico.

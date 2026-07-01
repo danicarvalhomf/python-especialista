@@ -1,0 +1,16 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/002-docker-python/index.html",
+      "/posts/001-projeto-python/index.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/002-docker-python/index.html",
+      "/posts/001-projeto-python/index.html"
+    ]
+  }
+]

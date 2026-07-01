@@ -1,0 +1,14 @@
+---
+title: "Título do post"
+date: today
+categories:
+  - python
+---
+
+# Problema
+
+# Investigação
+
+# Solução
+
+# Lições Aprendidas
