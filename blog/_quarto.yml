@@ -5,6 +5,7 @@ project:
 website:
   title: "Engenharia dos Fluxos"
   description: "Explorando sistemas complexos através do Python"
+  google-analytics: "G-H2WW8TV4X8"
 
   navbar:
     left:
