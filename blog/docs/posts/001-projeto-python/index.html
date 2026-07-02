@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-07-01">
+<meta name="dcterms.date" content="2026-06-24">
 
 <title>Projeto Python: Explorando sistemas complexos – Engenharia dos Fluxos</title>
 <style>
@@ -110,6 +110,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H2WW8TV4X8"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -323,10 +332,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a-questão-do-ambiente-de-desenvolvimento-em-python" id="toc-a-questão-do-ambiente-de-desenvolvimento-em-python" class="nav-link active" data-scroll-target="#a-questão-do-ambiente-de-desenvolvimento-em-python">A questão do ambiente de desenvolvimento em Python</a></li>
+  <li><a href="#a-questão-do-ambiente-de-desenvolvimento-em-python" id="toc-a-questão-do-ambiente-de-desenvolvimento-em-python" class="nav-link active" data-scroll-target="#a-questão-do-ambiente-de-desenvolvimento-em-python">A questão do ambiente de desenvolvimento em Python</a>
+  <ul class="collapse">
   <li><a href="#abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" id="toc-abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" class="nav-link" data-scroll-target="#abordagem-moderna-do-ambiente-de-desenvolvimento-em-python">Abordagem moderna do ambiente de desenvolvimento em Python</a></li>
   <li><a href="#solução" id="toc-solução" class="nav-link" data-scroll-target="#solução">Solução</a></li>
   <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais">Considerações finais</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -350,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">June 24, 2026</p>
     </div>
   </div>
   
@@ -370,9 +381,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Meu olhar para a tecnologia nunca foi apenas técnico, mas também comunicacional, como uma forma multimídia de troca de informações e de entretenimento. Porém, é sabido que muitos dos fracassos em sistemas de informação não estão relacionados com o tecnológico, mas com a habilidade humana de identificar as soluções e utilizar a tecnologia como ela deve ser, como ferramenta para fazer mais e melhor.</p>
 <p>Uma vez, alguém me disse uma analogia, que desenvolver software é tipo construir uma casa, tem que fazer a fundação, construir paredes, separar áreas etc. Porém, na época, já disse que não concordava porque, apesar de algumas semelhanças, a principal distinção é a sua natureza líquida, ou seja, nada é feito para durar muito tempo. Característica da metamorfose do hipertexto, sempre em mutação. Ou seja, uma casa, quando você constrói uma parede, do nada ela não deixa de existir, ou ainda, começa a mudar seu material e você rapidamente precisa se adaptar porque senão sua construção vai ceder.</p>
 <p>É assim com o digital, construir um software, a menos que você tenha controle de tudo, o que hoje é muito difícil, será muito comum que a atualização de uma linguagem de programação faça parar de funcionar o sistema. E não basta dizer que não vai atualizar; caso contrário, logo vai parar de funcionar, de qualquer forma, pois o sistema não vai conseguir responder às demandas atuais. E quem trabalha na área, atualizar-se é uma constante e isso é algo que nos faz um pouco mais tolerantes ao imperfeito e acabar enxergando beleza na entropia e também como uma oportunidade de realizar algum trabalho.</p>
-</section>
-<section id="abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" class="level1">
-<h1>Abordagem moderna do ambiente de desenvolvimento em Python</h1>
+<section id="abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" class="level2">
+<h2 class="anchored" data-anchor-id="abordagem-moderna-do-ambiente-de-desenvolvimento-em-python">Abordagem moderna do ambiente de desenvolvimento em Python</h2>
 <p>Este post vem no intuito de acompanhar a evolução do ambiente de desenvolvimento em Python, cujo até pouco tempo usávamos o <code>pip</code>, <code>venv</code> (ambiente virtual) e outra ferramentas em conjunto, mas que agora, para responder melhor em projetos de <code>machine learning</code> (aprendizado de máquina), existe a proposta do <code>uv</code>, que segundo o <a href="https://docs.astral.sh/uv/">site oficial</a>, é um pacote e um gerenciador de projeto, escrito em <code>Rust</code> com o objetivo de substituir a necessidade de gerenciar vários recursos com uma única ferramenta e mais rápida.</p>
 <p>A instalação é simples, vou apresentar aqui o comando para uso no Linux Ubuntu.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -396,8 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Para instalar ferramentas de desenvolvimento:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add <span class="at">--dev</span> pytest ruff ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="solução" class="level1">
-<h1>Solução</h1>
+<section id="solução" class="level2">
+<h2 class="anchored" data-anchor-id="solução">Solução</h2>
 <p><code>uv</code> substitui boa parte do fluxo tradicional com <code>pip</code>, <code>venv</code> e <code>requirements.txt</code>.</p>
 <p>Em vez de usar:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
@@ -412,14 +422,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Para rodar o projeto, use o comando</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run main.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="considerações-finais" class="level1">
-<h1>Considerações finais</h1>
+<section id="considerações-finais" class="level2">
+<h2 class="anchored" data-anchor-id="considerações-finais">Considerações finais</h2>
 <p>Quando precisamos de vários passos para realizar algo em sistemas de informação, é natural que alguma ferramenta ou estratégia de se diga mais eficiente surja, pois afinal, é assim que a tecnologia evolui, respondendo a problemas que se apresentam à medida em que novos desafios surgem em diversos contextos.</p>
 <p>Percebo que alguns projetos que usam <code>machine learning</code> têm adotado o <code>uv</code>, justamente por essa suposta facilidade, mas com ela vem a questão de não esquecer do que ela está fazendo por nós, para que não fiquemos dependentes.</p>
 <p>Me parece que quanto mais a tecnologia digital evolui, mas importante tem se tornado o estudo sobre os princípios como matemática, lógica, engenharia de software, resolução de problemas, estratégias de comunicação, filosofia, dentre outras disciplinas.</p>
 <p>Isso levanta uma questão que sempre me intrigou, que na verdade não existe mais somente a área de TI, mas a computação que está presente em todas as áreas e profissões. Percebo que todas as áreas de conhecimento estão tendendo a ter seu segmento neste campo.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

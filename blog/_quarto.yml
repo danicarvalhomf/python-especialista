@@ -6,6 +6,12 @@ website:
   title: "Engenharia dos Fluxos"
   description: "Explorando sistemas complexos através do Python"
   google-analytics: "G-H2WW8TV4X8"
+  
+  site-url: https://danicarvalhomf.github.io/python-especialista/
+  repo-url: https://github.com/danicarvalhomf/python-especialista
+
+  open-graph: true
+  twitter-card: true
 
   navbar:
     left:
@@ -15,7 +21,8 @@ website:
       - href: posts.qmd
         text: Artigos
   
-      - about.qmd
+      - href: about.qmd
+        text: Sobre
 
 format:
   html:
