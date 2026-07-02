@@ -1,6 +1,6 @@
 ---
 title: "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers"
-date: today
+date: 2026-07-01
 categories:
   - python
   - docker

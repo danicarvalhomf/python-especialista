@@ -1,6 +1,6 @@
 ---
 title: "Projeto Python: Explorando sistemas complexos"
-date: today
+date: 2026-06-24
 categories:
   - python
 ---
@@ -22,7 +22,7 @@ Uma vez, alguém me disse uma analogia, que desenvolver software é tipo constru
 
 É assim com o digital, construir um software, a menos que você tenha controle de tudo, o que hoje é muito difícil, será muito comum que a atualização de uma linguagem de programação faça parar de funcionar o sistema. E não basta dizer que não vai atualizar; caso contrário, logo vai parar de funcionar, de qualquer forma, pois o sistema não vai conseguir responder às demandas atuais. E quem trabalha na área, atualizar-se é uma constante e isso é algo que nos faz um pouco mais tolerantes ao imperfeito e acabar enxergando beleza na entropia e também como uma oportunidade de realizar algum trabalho.
 
-# Abordagem moderna do ambiente de desenvolvimento em Python
+## Abordagem moderna do ambiente de desenvolvimento em Python
 
 Este post vem no intuito de acompanhar a evolução do ambiente de desenvolvimento em Python, cujo até pouco tempo usávamos o `pip`, `venv` (ambiente virtual) e outra ferramentas em conjunto, mas que agora, para responder melhor em projetos de `machine learning` (aprendizado de máquina), existe a proposta do `uv`, que segundo o [site oficial](https://docs.astral.sh/uv/), é um pacote e um gerenciador de projeto, escrito em `Rust` com o objetivo de substituir a necessidade de gerenciar vários recursos com uma única ferramenta e mais rápida.
 
@@ -73,7 +73,7 @@ uv add --dev pytest ruff ipykernel
 ```
 
 
-# Solução
+## Solução
 
 `uv` substitui boa parte do fluxo tradicional com `pip`, `venv` e `requirements.txt`.
 
@@ -101,7 +101,7 @@ uv run main.py
 ```
 
 
-# Considerações finais
+## Considerações finais
 
 Quando precisamos de vários passos para realizar algo em sistemas de informação, é natural que alguma ferramenta ou estratégia de se diga mais eficiente surja, pois afinal, é assim que a tecnologia evolui, respondendo a problemas que se apresentam à medida em que novos desafios surgem em diversos contextos.
 
