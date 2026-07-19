@@ -8,7 +8,7 @@ COPY pyproject.toml uv.lock ./
 
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY main.py weather.py ./
+COPY main.py weather.py weather_snapshot.csv ./
 
 EXPOSE 8050
 

@@ -1,4 +1,7 @@
+from pathlib import Path
+
 import pandas as pd
+import requests
 import vizro.models as vm
 import vizro.plotly.express as px
 from vizro import Vizro
@@ -18,6 +21,7 @@ LOCATIONS = {
     }
 }
 
+SNAPSHOT_PATH = Path(__file__).parent / "weather_snapshot.csv"
 
 def load_all_locations() -> pd.DataFrame:
     dataframes: list[pd.DataFrame] = []
@@ -35,8 +39,31 @@ def load_all_locations() -> pd.DataFrame:
 
     return pd.concat(dataframes, ignore_index=True)
 
+def load_dashboard_data() -> pd.DataFrame:
+    try:
+        weather_data = load_all_locations()
+        weather_data.to_csv(SNAPSHOT_PATH, index=False)
+        return weather_data
 
-weather_data = load_all_locations()
+    except requests.RequestException as error:
+        print(f"Unable to update weather data: {error}")
+
+        if not SNAPSHOT_PATH.exists():
+            raise RuntimeError(
+                "Open-Meteo is unavailable and no local snapshot was found."
+            ) from error
+
+        print("Loading weather data from the local snapshot.")
+
+        dataframe = pd.read_csv(
+            SNAPSHOT_PATH,
+            parse_dates=["time", "Data"],
+        )
+
+        return dataframe
+
+
+weather_data = load_dashboard_data()
 
 
 page = vm.Page(
@@ -75,7 +102,7 @@ page = vm.Page(
                 y="wind_speed_10m",
                 labels={
                     "time": "Data e horário",
-                    "wind_speed_10m": "Veloc. do vento (Km/h)",
+                    "wind_speed_10m": "Veloc. do vento (km/h)",
                 },
             )
         ),
