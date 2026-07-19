@@ -5,10 +5,18 @@ categories:
   - python
 ---
 
-# Problema
+## Introdução
 
-# Investigação
+### O problema
 
-# Solução
+### A origem da tecnologia
 
-# Lições Aprendidas
+## Desenvolvimento
+
+### Conceitos fundamentais
+
+## Ambiente utilizado
+
+## Considerações finais
+
+## Referências

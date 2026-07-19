@@ -1,0 +1,13 @@
+[project]
+name = "lab-dashboard-cycling"
+version = "0.1.0"
+description = "Outdoor cycling weather dashboard"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gunicorn>=26.0.0",
+    "pandas>=3.0.3",
+    "plotly>=6.9.0",
+    "requests>=2.34.2",
+    "vizro>=0.1.59",
+]
