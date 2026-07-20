@@ -7,9 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Daniela Carvalho">
-<meta name="dcterms.date" content="2026-06-24">
+<meta name="dcterms.date" content="2026-07-20">
+<meta name="description" content="Uso de containers para aplicações Python.">
 
-<title>Projeto Python: Explorando sistemas complexos – Engenharia dos Fluxos</title>
+<title>Controlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container – Engenharia dos Fluxos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -123,11 +124,11 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Projeto Python: Explorando sistemas complexos – Engenharia dos Fluxos">
-<meta property="og:description" content="Explorando sistemas complexos através do Python">
+<meta property="og:title" content="Controlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container – Engenharia dos Fluxos">
+<meta property="og:description" content="Uso de containers para aplicações Python.">
 <meta property="og:site_name" content="Engenharia dos Fluxos">
-<meta name="twitter:title" content="Projeto Python: Explorando sistemas complexos – Engenharia dos Fluxos">
-<meta name="twitter:description" content="Explorando sistemas complexos através do Python">
+<meta name="twitter:title" content="Controlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container – Engenharia dos Fluxos">
+<meta name="twitter:description" content="Uso de containers para aplicações Python.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -339,11 +340,15 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a-questão-do-ambiente-de-desenvolvimento-em-python" id="toc-a-questão-do-ambiente-de-desenvolvimento-em-python" class="nav-link active" data-scroll-target="#a-questão-do-ambiente-de-desenvolvimento-em-python">A questão do ambiente de desenvolvimento em Python</a>
+  <li><a href="#painel-de-condições-climáticas-para-ciclismo" id="toc-painel-de-condições-climáticas-para-ciclismo" class="nav-link active" data-scroll-target="#painel-de-condições-climáticas-para-ciclismo">Painel de Condições Climáticas para Ciclismo</a>
   <ul class="collapse">
-  <li><a href="#abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" id="toc-abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" class="nav-link" data-scroll-target="#abordagem-moderna-do-ambiente-de-desenvolvimento-em-python">Abordagem moderna do ambiente de desenvolvimento em Python</a></li>
-  <li><a href="#solução" id="toc-solução" class="nav-link" data-scroll-target="#solução">Solução</a></li>
-  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais">Considerações finais</a></li>
+  <li><a href="#tecnologias" id="toc-tecnologias" class="nav-link" data-scroll-target="#tecnologias">Tecnologias</a></li>
+  <li><a href="#funcionalidades" id="toc-funcionalidades" class="nav-link" data-scroll-target="#funcionalidades">Funcionalidades</a></li>
+  </ul></li>
+  <li><a href="#desenvolvimento" id="toc-desenvolvimento" class="nav-link" data-scroll-target="#desenvolvimento">Desenvolvimento</a>
+  <ul class="collapse">
+  <li><a href="#gunicorn" id="toc-gunicorn" class="nav-link" data-scroll-target="#gunicorn">Gunicorn</a></li>
+  <li><a href="#problema-encontrado-durante-o-deploy" id="toc-problema-encontrado-durante-o-deploy" class="nav-link" data-scroll-target="#problema-encontrado-durante-o-deploy">Problema encontrado durante o deploy</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -354,12 +359,20 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Projeto Python: Explorando sistemas complexos</h1>
+<h1 class="title">Controlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container</h1>
   <div class="quarto-categories">
     <div class="quarto-category">python</div>
+    <div class="quarto-category">docker</div>
+    <div class="quarto-category">devops</div>
+    <div class="quarto-category">containers</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Uso de containers para aplicações Python.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -374,7 +387,7 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 24, 2026</p>
+      <p class="date">July 20, 2026</p>
     </div>
   </div>
   
@@ -386,61 +399,157 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
 </header>
 
 
-<section id="a-questão-do-ambiente-de-desenvolvimento-em-python" class="level1">
-<h1>A questão do ambiente de desenvolvimento em Python</h1>
-<p>As tecnologias digitais estão em constante evolução e precisamos tentar acompanhá-las na perspectiva de solução de problemas ou de conquista de objetivos.</p>
-<p>A ideia deste blog foi compartilhar uma jornada de atualização de conhecimento, sob o viés do Python, uma linguagem que hoje é fundamental para quem trabalha com análise de dados e inteligência artificial. Mesmo que, para prototipação, seja uma alternativa popular para se comunicar com a máquina.</p>
-<p>Na era da informação, não se exclui também a comunicação; não me refiro às telecomunicações, mas à comunicação social, que hoje é mediada por meio das máquinas e, muitas vezes, ela representa também o interlocutor, a ponto de interromper nossos pensamentos por intrusão de correção ou sugestão do que queremos falar.</p>
-<p>Meu olhar para a tecnologia nunca foi apenas técnico, mas também comunicacional, como uma forma multimídia de troca de informações e de entretenimento. Porém, é sabido que muitos dos fracassos em sistemas de informação não estão relacionados com o tecnológico, mas com a habilidade humana de identificar as soluções e utilizar a tecnologia como ela deve ser, como ferramenta para fazer mais e melhor.</p>
-<p>Uma vez, alguém me disse uma analogia, que desenvolver software é tipo construir uma casa, tem que fazer a fundação, construir paredes, separar áreas etc. Porém, na época, já disse que não concordava porque, apesar de algumas semelhanças, a principal distinção é a sua natureza líquida, ou seja, nada é feito para durar muito tempo. Característica da metamorfose do hipertexto, sempre em mutação. Ou seja, uma casa, quando você constrói uma parede, do nada ela não deixa de existir, ou ainda, começa a mudar seu material e você rapidamente precisa se adaptar porque senão sua construção vai ceder.</p>
-<p>É assim com o digital, construir um software, a menos que você tenha controle de tudo, o que hoje é muito difícil, será muito comum que a atualização de uma linguagem de programação faça parar de funcionar o sistema. E não basta dizer que não vai atualizar; caso contrário, logo vai parar de funcionar, de qualquer forma, pois o sistema não vai conseguir responder às demandas atuais. E quem trabalha na área, atualizar-se é uma constante e isso é algo que nos faz um pouco mais tolerantes ao imperfeito e acabar enxergando beleza na entropia e também como uma oportunidade de realizar algum trabalho.</p>
-<section id="abordagem-moderna-do-ambiente-de-desenvolvimento-em-python" class="level2">
-<h2 class="anchored" data-anchor-id="abordagem-moderna-do-ambiente-de-desenvolvimento-em-python">Abordagem moderna do ambiente de desenvolvimento em Python</h2>
-<p>Este post vem no intuito de acompanhar a evolução do ambiente de desenvolvimento em Python, cujo até pouco tempo usávamos o <code>pip</code>, <code>venv</code> (ambiente virtual) e outra ferramentas em conjunto, mas que agora, para responder melhor em projetos de <code>machine learning</code> (aprendizado de máquina), existe a proposta do <code>uv</code>, que segundo o <a href="https://docs.astral.sh/uv/">site oficial</a>, é um pacote e um gerenciador de projeto, escrito em <code>Rust</code> com o objetivo de substituir a necessidade de gerenciar vários recursos com uma única ferramenta e mais rápida.</p>
-<p>A instalação é simples, vou apresentar aqui o comando para uso no Linux Ubuntu.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>É uma boa prática verificar a versão instalada;</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Para iniciar um novo ambiente de desenvolvimento:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--app</span> nome-projeto-python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>O resultado é algo assim:</p>
-<pre class="text"><code>nome-projeto-python/
-├── .python-version
-├── main.py
-├── pyproject.toml
-├── README.md
-└── src/</code></pre>
-<p>Para criar o ambiente virtual:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A ativação segue o mesmo comando conhecido para o venv:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Para instalar pacotes, não se utiliza o <code>pip</code>, mas o comando <code>add</code>, como no exemplo abaixo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pandas rich psutil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Para instalar ferramentas de desenvolvimento:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add <span class="at">--dev</span> pytest ruff ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Desde o surgimento e a expansão das tecnologias digitais e toda a discussão sobre hipertexto no contexto da internet, percebe-se que, em princípio, estamos lidando com o mesmo tipo de ambiente e meio de comunicação.</p>
+<p>Pierre Lévy, em seu livro “As Tecnologias da Inteligência”, foi enfático ao colocar a metamorfose – a constante mudança – como um de seus eixos fundamentais. Não temos como garantir estabilidade, se não for por meio do fruto dos esforços de muitas pessoas. E, por isso, vemos tantas empresas dedicadas às operações digitais, nas quais, além do desenvolvimento, gastam-se muita energia, tempo e, consequentemente, dinheiro, para manter as operações e serviços estáveis.</p>
+<p>Essas mudanças acontecem porque cada pessoa ou ator consegue adicionar um nó nessa rede hipertextual. Uma nova tecnologia, um framework, um novo dispositivo, novos conceitos de organização da informação.</p>
+<p>A sensação de constante novidade é permanente, mas se nos pautamos nos princípios, vemos que por mais que a tecnologia evolua, ela ainda está enfrentando os mesmos desafios porque está baseada nos mesmos princípios tecnológicos.</p>
+<p>Percebe-se que o uso de containers como prática profissional de desenvolvimento de software vem justamente para auxiliar nesses esforços, pois minimiza os impactos da constante mudança, uma vez que, ao empacotar um sistema em seu próprio ecossistema, reduz problemas decorrentes de diferenças entre ambientes de execução.</p>
+<p>Neste post vou relatar os passos dados de um <a href="https://github.com/danicarvalhomf/python-especialista/tree/main/labs/lab-dashboard-cycling">laboratório</a> criado especificamente para ilustrar esse empacotamento. Para isso, desenvolveu-se um <a href="https://cycling-weather-dashboard.onrender.com">Painel de Condições Climáticas</a> para informar a condição do tempo para amantes do ciclismo, com três informações essenciais: temperatura, probabilidade de chuva e velocidade do vento.</p>
+<section id="painel-de-condições-climáticas-para-ciclismo" class="level2">
+<h2 class="anchored" data-anchor-id="painel-de-condições-climáticas-para-ciclismo">Painel de Condições Climáticas para Ciclismo</h2>
+<p>Foi desenvolvido um painel interativo em Python e Vizro para visualizar as condições climáticas para a prática de ciclismo.</p>
+<section id="tecnologias" class="level3">
+<h3 class="anchored" data-anchor-id="tecnologias">Tecnologias</h3>
+<ul>
+<li>Python 3.12</li>
+<li>uv</li>
+<li>Vizro</li>
+<li>Plotly</li>
+<li>Docker</li>
+<li>API Open-Meteo</li>
+<li>Render</li>
+</ul>
 </section>
-<section id="solução" class="level2">
-<h2 class="anchored" data-anchor-id="solução">Solução</h2>
-<p><code>uv</code> substitui boa parte do fluxo tradicional com <code>pip</code>, <code>venv</code> e <code>requirements.txt</code>.</p>
-<p>Em vez de usar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Com o <code>uv</code> fica assim:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pandas</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python arquivo.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>O <code>pyproject.toml</code> agora é o centro do projeto, nele declaramos o nome, versão, dependências e ferramentas.</p>
-<p>Para rodar o projeto, use o comando</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run main.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="funcionalidades" class="level3">
+<h3 class="anchored" data-anchor-id="funcionalidades">Funcionalidades</h3>
+<ul>
+<li>Previsão do tempo</li>
+<li>Filtro por cidade</li>
+<li>Filtro por data</li>
+<li>Tentativa automática de reexecução em caso de limites de taxa (rate limits) da API</li>
+<li>Mecanismo de fallback com snapshot local</li>
+<li>Implantação via Docker</li>
+</ul>
 </section>
-<section id="considerações-finais" class="level2">
-<h2 class="anchored" data-anchor-id="considerações-finais">Considerações finais</h2>
-<p>Quando precisamos de vários passos para realizar algo em sistemas de informação, é natural que alguma ferramenta ou estratégia de se diga mais eficiente surja, pois afinal, é assim que a tecnologia evolui, respondendo a problemas que se apresentam à medida em que novos desafios surgem em diversos contextos.</p>
-<p>Percebo que alguns projetos que usam <code>machine learning</code> têm adotado o <code>uv</code>, justamente por essa suposta facilidade, mas com ela vem a questão de não esquecer do que ela está fazendo por nós, para que não fiquemos dependentes.</p>
-<p>Me parece que quanto mais a tecnologia digital evolui, mas importante tem se tornado o estudo sobre os princípios como matemática, lógica, engenharia de software, resolução de problemas, estratégias de comunicação, filosofia, dentre outras disciplinas.</p>
-<p>Isso levanta uma questão que sempre me intrigou, que na verdade não existe mais somente a área de TI, mas a computação que está presente em todas as áreas e profissões. Percebo que todas as áreas de conhecimento estão tendendo a ter seu segmento neste campo.</p>
+</section>
+<section id="desenvolvimento" class="level2">
+<h2 class="anchored" data-anchor-id="desenvolvimento">Desenvolvimento</h2>
+<p>Após o dashboard estar finalizado e rodando corretamente em ambiente local, o próximo passo é disponibilizá-lo em diferentes ambientes de execução, de forma previsível e reproduzível, e na internet, minimizando os efeitos da mudança. Para isso, foi criada uma imagem da aplicação.</p>
+<p>O uso de containers visa reduzir os efeitos dessa metamorfose nos ambientes de execução. Em vez de depender das particularidades de cada máquina, a aplicação passa a carregar consigo o próprio ecossistema de execução.</p>
+<p>Uma imagem Docker é um artefato imutável. Isso significa que, uma vez construída, seu conteúdo permanece exatamente o mesmo em qualquer ambiente, favorecendo a reprodutibilidade e reduzindo problemas decorrentes de diferenças de configuração.</p>
+<p>Nesta imagem, estão o sistema operacional mínimo, o runtime do Python, as bibliotecas, o código da aplicação e o comando de inicialização.</p>
+<p>No caso do Painel de Condições Climáticas para Ciclismo, a imagem contém:</p>
+<ul>
+<li>Python 3.12;</li>
+<li>uv;</li>
+<li>dependências do projeto;</li>
+<li>dashboard Vizro;</li>
+<li>Gunicorn.</li>
+</ul>
+<p>O container é uma instância em execução de uma imagem. Enquanto a imagem representa um modelo estático, o container representa sua execução.</p>
+<pre class="text"><code>Imagem
+
+↓
+
+Container</code></pre>
+<p>Assim como:</p>
+<pre class="text"><code>Classe
+
+   ↓
+
+Objeto</code></pre>
+<p>ou</p>
+<pre class="text"><code>Blueprint
+
+   ↓
+
+Casa construída</code></pre>
+<p>Foi criado um arquivo Dockerfile. O Dockerfile descreve, passo a passo, como a imagem será construída, definindo todas as dependências necessárias para sua execução.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> python:3.12-slim</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> <span class="at">--from</span><span class="op">=</span>ghcr.io/astral-sh/uv:latest /uv /uvx /bin/</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">WORKDIR</span> /app</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> pyproject.toml uv.lock ./</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> uv sync <span class="at">--frozen</span> <span class="at">--no-dev</span> <span class="at">--no-install-project</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> main.py weather.py weather_snapshot.csv ./</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">EXPOSE</span> 8050</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">CMD</span> [<span class="st">"sh"</span>, <span class="st">"-c"</span>, <span class="st">"/app/.venv/bin/gunicorn main:app --workers 1 --bind 0.0.0.0:</span><span class="va">${PORT</span><span class="op">:-</span>8050<span class="va">}</span><span class="st">"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Onde:</p>
+<p>Base da imagem</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> python:3.12-slim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Instalação do uv</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> <span class="at">--from</span><span class="op">=</span>ghcr.io/astral-sh/uv:latest /uv /uvx /bin/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Diretório da aplicação</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">WORKDIR</span> /app</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Arquivos necessários para instalação</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> pyproject.toml uv.lock ./</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Instalação das dependências</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> uv sync <span class="at">--frozen</span> <span class="at">--no-dev</span> <span class="at">--no-install-project</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Código da aplicação</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> main.py weather.py weather_snapshot.csv ./</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O arquivo <code>weather_snapshot.csv</code> foi criado para garantir funcionamento mesmo quando a API <a href="https://open-meteo.com/">Open-Meteo</a> estiver temporariamente indisponível.</p>
+<p>Indicação da porta utilizada pela aplicação dentro do container.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">EXPOSE</span> 8050</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>E o comando de inicialização:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">CMD</span> [<span class="st">"sh"</span>, <span class="st">"-c"</span>, <span class="st">"/app/.venv/bin/gunicorn main:app --workers 1 --bind 0.0.0.0:</span><span class="va">${PORT</span><span class="op">:-</span>8050<span class="va">}</span><span class="st">"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para construir a imagem, ao acessar a pasta do laboratório, deve-se rodar o comando Docker:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> cycling-weather-dashboard .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Um passo importante depois é verificar se a imagem foi criada.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Agora chega-se no passo de criar o container. Para isso, utilizou-se o comando:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--name</span> cycling-dashboard <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 8050:8050 <span class="dt">\</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  cycling-weather-dashboard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para acessar a aplicação localmente, acessar o endereço no navegador:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http://localhost:8050</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quando o container estiver sendo executado em primeiro plano, pode-se interrompê-lo com:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl+C</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Também é possível pará-lo em outro terminal com:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop cycling-dashboard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para remover:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm cycling-dashboard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Depois de removido, um novo container pode ser criado com:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="dt">\</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--name</span> cycling-dashboard <span class="dt">\</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 8050:8050 <span class="dt">\</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  cycling-weather-dashboard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Com isso, conclui-se o ciclo de criação e gerenciamento local do container.</p>
+<section id="gunicorn" class="level3">
+<h3 class="anchored" data-anchor-id="gunicorn">Gunicorn</h3>
+<p>Para este projeto, foi usado o Gunicorn. O <a href="https://gunicorn.org/">Gunicorn</a>, cujo nome deriva de “Green Unicorn”, é um servidor HTTP WSGI para aplicações Python. É compatível com diferentes frameworks web, possui implementação simples e apresenta baixo consumo de recursos.</p>
+<p>Em desenvolvimento usou-se:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python main.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No entanto, aplicações WSGI em produção normalmente são executadas por servidores próprios, como o Gunicorn.</p>
+<p>No projeto ele foi configurado diretamente no Dockerfile.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">CMD</span> [<span class="st">"sh"</span>, <span class="st">"-c"</span>, <span class="st">"/app/.venv/bin/gunicorn main:app --workers 1 --bind 0.0.0.0:</span><span class="va">${PORT</span><span class="op">:-</span>8050<span class="va">}</span><span class="st">"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Sendo que:</p>
+<ul>
+<li><strong>main:app</strong> → busca o <code>app</code> dentro de <code>main.py</code> <strong>workers</strong> → quantidade de processos independentes criados pelo Gunicorn para atender requisições simultâneas. Neste laboratório foi utilizado apenas um worker, pois a aplicação possui baixa carga e foi publicada na camada gratuita do Render. <strong>PORT</strong> → variável de ambiente que define a porta utilizada pela aplicação. O Render fornece essa variável automaticamente. A expressão <code>${PORT:-8050}</code> determina que, caso ela não exista, seja utilizada a porta 8050 como padrão.</li>
+</ul>
+<p>O Render irá clonar o repositório; construir a imagem Docker, iniciar um container e disponibilizar uma URL pública.</p>
+<p>Após o deploy, o <a href="https://cycling-weather-dashboard.onrender.com">Painel de Condições Climáticas para Ciclismo</a> ficou disponível publicamente.</p>
+</section>
+<section id="problema-encontrado-durante-o-deploy" class="level3">
+<h3 class="anchored" data-anchor-id="problema-encontrado-durante-o-deploy">Problema encontrado durante o deploy</h3>
+<p>Nos primeiros testes em produção surgiu um problema que não havia aparecido localmente. Durante o deploy a API Open-Meteo respondeu:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">HTTP</span> 429 <span class="at">-</span> Too Many Requests</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Como a aplicação carregava os dados durante a inicialização, o Gunicorn encerrava o processo e o deploy falhava.</p>
+<p>Uma abordagem foi implementada para lidar com esse cenário:</p>
+<ul>
+<li>novas tentativas com backoff exponencial;</li>
+<li>identificação da resposta HTTP 429;</li>
+<li>utilização de um snapshot local (weather_snapshot.csv) quando a API não estivesse disponível.</li>
+</ul>
+<p>Dessa forma, a aplicação continua inicializando normalmente, mesmo durante indisponibilidades temporárias do serviço externo.</p>
+<p>Percebe-se que a estabilidade vai além do container em si, abrangendo também uma série de estratégias utilizadas para disponibilizar o conteúdo, como manter uma representação local temporária dos dados a serem consultados, para não depender apenas de requisições, pois a comunicação pode falhar ou, ainda, pode haver um erro no emissor do conteúdo.</p>
+<p>Em outras palavras, disponibilizar um sistema na internet não significa apenas empacotar software. Significa também construir mecanismos capazes de lidar com as inevitáveis falhas da comunicação entre sistemas, preservando a continuidade do serviço mesmo diante da instabilidade inerente aos ecossistemas digitais.</p>
 
 
 </section>

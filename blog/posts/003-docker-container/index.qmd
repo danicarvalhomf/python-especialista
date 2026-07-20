@@ -1,0 +1,265 @@
+---
+title: "Controlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container"
+date: today
+author: "Daniela Carvalho"
+categories:
+  - python
+  - docker
+  - devops
+  - containers
+description: "Uso de containers para aplicações Python."
+lab: ../../labs/lab-dashboard-cycling
+draft: false
+toc: true
+---
+
+
+Desde o surgimento e a expansão das tecnologias digitais e toda a discussão sobre hipertexto no contexto da internet, percebe-se que, em princípio, estamos lidando com o mesmo tipo de ambiente e meio de comunicação.
+
+Pierre Lévy, em seu livro "As Tecnologias da Inteligência", foi enfático ao colocar a metamorfose – a constante mudança – como um de seus eixos fundamentais. Não temos como garantir estabilidade, se não for por meio do fruto dos esforços de muitas pessoas. E, por isso, vemos tantas empresas dedicadas às operações digitais, nas quais, além do desenvolvimento, gastam-se muita energia, tempo e, consequentemente, dinheiro, para manter as operações e serviços estáveis.
+
+Essas mudanças acontecem porque cada pessoa ou ator consegue adicionar um nó nessa rede hipertextual. Uma nova tecnologia, um framework, um novo dispositivo, novos conceitos de organização da informação. 
+
+A sensação de constante novidade é permanente, mas se nos pautamos nos princípios, vemos que por mais que a tecnologia evolua, ela ainda está enfrentando os mesmos desafios porque está baseada nos mesmos princípios tecnológicos.
+
+Percebe-se que o uso de containers como prática profissional de desenvolvimento de software vem justamente para auxiliar nesses esforços, pois minimiza os impactos da constante mudança, uma vez que, ao empacotar um sistema em seu próprio ecossistema, reduz problemas decorrentes de diferenças entre ambientes de execução.
+
+Neste post vou relatar os passos dados de um [laboratório](https://github.com/danicarvalhomf/python-especialista/tree/main/labs/lab-dashboard-cycling) criado especificamente para ilustrar esse empacotamento. Para isso, desenvolveu-se um [Painel de Condições Climáticas](https://cycling-weather-dashboard.onrender.com) para informar a condição do tempo para amantes do ciclismo, com três informações essenciais: temperatura, probabilidade de chuva e velocidade do vento.
+
+## Painel de Condições Climáticas para Ciclismo
+
+Foi desenvolvido um painel interativo em Python e Vizro para visualizar as condições climáticas para a prática de ciclismo.
+ 
+### Tecnologias
+
+- Python 3.12
+- uv
+- Vizro
+- Plotly
+- Docker
+- API Open-Meteo
+- Render
+
+### Funcionalidades
+
+- Previsão do tempo
+- Filtro por cidade
+- Filtro por data
+- Tentativa automática de reexecução em caso de limites de taxa (rate limits) da API
+- Mecanismo de fallback com snapshot local
+- Implantação via Docker
+
+
+## Desenvolvimento
+
+Após o dashboard estar finalizado e rodando corretamente em ambiente local, o próximo passo é disponibilizá-lo em diferentes ambientes de execução, de forma previsível e reproduzível, e na internet, minimizando os efeitos da mudança. Para isso, foi criada uma imagem da aplicação.
+
+O uso de containers visa reduzir os efeitos dessa metamorfose nos ambientes de execução. Em vez de depender das particularidades de cada máquina, a aplicação passa a carregar consigo o próprio ecossistema de execução.
+
+Uma imagem Docker é um artefato imutável. Isso significa que, uma vez construída, seu conteúdo permanece exatamente o mesmo em qualquer ambiente, favorecendo a reprodutibilidade e reduzindo problemas decorrentes de diferenças de configuração.
+
+Nesta imagem, estão o sistema operacional mínimo, o runtime do Python, as bibliotecas, o código da aplicação e o comando de inicialização.
+
+No caso do Painel de Condições Climáticas para Ciclismo, a imagem contém:
+
+* Python 3.12;
+* uv;
+* dependências do projeto;
+* dashboard Vizro;
+* Gunicorn.
+
+O container é uma instância em execução de uma imagem. Enquanto a imagem representa um modelo estático, o container representa sua execução.
+
+```text
+Imagem
+
+↓
+
+Container
+```
+
+Assim como:
+
+```text
+Classe
+
+   ↓
+
+Objeto
+```
+
+ou
+
+```text
+Blueprint
+
+   ↓
+
+Casa construída
+```
+
+Foi criado um arquivo Dockerfile. O Dockerfile descreve, passo a passo, como a imagem será construída, definindo todas as dependências necessárias para sua execução.
+
+```bash
+FROM python:3.12-slim
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+WORKDIR /app
+
+COPY pyproject.toml uv.lock ./
+
+RUN uv sync --frozen --no-dev --no-install-project
+
+COPY main.py weather.py weather_snapshot.csv ./
+
+EXPOSE 8050
+
+CMD ["sh", "-c", "/app/.venv/bin/gunicorn main:app --workers 1 --bind 0.0.0.0:${PORT:-8050}"]
+```
+
+
+Onde: 
+
+Base da imagem
+```bash
+FROM python:3.12-slim
+```
+
+Instalação do uv
+```bash
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+```
+
+Diretório da aplicação
+```bash
+WORKDIR /app
+```
+
+Arquivos necessários para instalação
+```bash
+COPY pyproject.toml uv.lock ./
+```
+
+Instalação das dependências
+```bash
+RUN uv sync --frozen --no-dev --no-install-project
+```
+
+Código da aplicação
+```bash
+COPY main.py weather.py weather_snapshot.csv ./
+```
+
+O arquivo `weather_snapshot.csv` foi criado para garantir funcionamento mesmo quando a API [Open-Meteo](https://open-meteo.com/) estiver temporariamente indisponível.
+
+Indicação da porta utilizada pela aplicação dentro do container.
+```bash
+EXPOSE 8050
+```
+
+E o comando de inicialização: 
+```bash
+CMD ["sh", "-c", "/app/.venv/bin/gunicorn main:app --workers 1 --bind 0.0.0.0:${PORT:-8050}"]
+```
+
+Para construir a imagem, ao acessar a pasta do laboratório, deve-se rodar o comando Docker:
+```bash
+docker build -t cycling-weather-dashboard .
+```
+
+Um passo importante depois é verificar se a imagem foi criada.
+```bash
+docker images
+```
+
+Agora chega-se no passo de criar o container. Para isso, utilizou-se o comando:
+
+```bash
+docker run \
+  --name cycling-dashboard \
+  -p 8050:8050 \
+  cycling-weather-dashboard
+```
+
+Para acessar a aplicação localmente, acessar o endereço no navegador:
+```bash
+http://localhost:8050
+```
+
+
+Quando o container estiver sendo executado em primeiro plano, pode-se interrompê-lo com:
+
+```bash
+Ctrl+C
+```
+
+Também é possível pará-lo em outro terminal com:
+
+```bash
+docker stop cycling-dashboard
+```
+
+Para remover:
+```bash
+docker rm cycling-dashboard
+```
+
+Depois de removido, um novo container pode ser criado com:
+```bash
+docker run \
+  --name cycling-dashboard \
+  -p 8050:8050 \
+  cycling-weather-dashboard
+```
+
+Com isso, conclui-se o ciclo de criação e gerenciamento local do container.
+
+
+### Gunicorn
+
+Para este projeto, foi usado o Gunicorn. O [Gunicorn](https://gunicorn.org/), cujo nome deriva de “Green Unicorn”, é um servidor HTTP WSGI para aplicações Python. É compatível com diferentes frameworks web, possui implementação simples e apresenta baixo consumo de recursos.
+
+Em desenvolvimento usou-se:
+```bash
+uv run python main.py
+``` 
+
+No entanto, aplicações WSGI em produção normalmente são executadas por servidores próprios, como o Gunicorn.
+
+No projeto ele foi configurado diretamente no Dockerfile.
+```bash
+CMD ["sh", "-c", "/app/.venv/bin/gunicorn main:app --workers 1 --bind 0.0.0.0:${PORT:-8050}"]
+```
+
+Sendo que:
+
+- **main:app** → busca o `app` dentro de `main.py`
+**workers** → quantidade de processos independentes criados pelo Gunicorn para atender requisições simultâneas. Neste laboratório foi utilizado apenas um worker, pois a aplicação possui baixa carga e foi publicada na camada gratuita do Render.
+**PORT** → variável de ambiente que define a porta utilizada pela aplicação. O Render fornece essa variável automaticamente. A expressão `${PORT:-8050}` determina que, caso ela não exista, seja utilizada a porta 8050 como padrão.
+
+O Render irá clonar o repositório; construir a imagem Docker, iniciar um container e disponibilizar uma URL pública.
+
+Após o deploy, o [Painel de Condições Climáticas para Ciclismo](https://cycling-weather-dashboard.onrender.com) ficou disponível publicamente.
+
+### Problema encontrado durante o deploy
+
+Nos primeiros testes em produção surgiu um problema que não havia aparecido localmente. Durante o deploy a API Open-Meteo respondeu:
+
+```bash
+HTTP 429 - Too Many Requests
+```
+
+Como a aplicação carregava os dados durante a inicialização, o Gunicorn encerrava o processo e o deploy falhava.
+
+Uma abordagem foi implementada para lidar com esse cenário:
+
+* novas tentativas com backoff exponencial;
+* identificação da resposta HTTP 429;
+* utilização de um snapshot local (weather_snapshot.csv) quando a API não estivesse disponível.
+
+Dessa forma, a aplicação continua inicializando normalmente, mesmo durante indisponibilidades temporárias do serviço externo.
+
+Percebe-se que a estabilidade vai além do container em si, abrangendo também uma série de estratégias utilizadas para disponibilizar o conteúdo, como manter uma representação local temporária dos dados a serem consultados, para não depender apenas de requisições, pois a comunicação pode falhar ou, ainda, pode haver um erro no emissor do conteúdo.
+
+Em outras palavras, disponibilizar um sistema na internet não significa apenas empacotar software. Significa também construir mecanismos capazes de lidar com as inevitáveis falhas da comunicação entre sistemas, preservando a continuidade do serviço mesmo diante da instabilidade inerente aos ecossistemas digitais.

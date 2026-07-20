@@ -13,5 +13,11 @@
   },
   "posts/002-docker-python/index.qmd": {
     "index.html": "78fb6b95"
+  },
+  "templates/post.qmd": {
+    "post.html": "0df0c55e"
+  },
+  "posts/003-docker-container/index.qmd": {
+    "index.html": "e50704e0"
   }
 }

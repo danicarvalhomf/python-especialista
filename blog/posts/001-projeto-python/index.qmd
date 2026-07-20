@@ -1,5 +1,6 @@
 ---
 title: "Projeto Python: Explorando sistemas complexos"
+author: "Daniela Carvalho"
 date: 2026-06-24
 categories:
   - python
