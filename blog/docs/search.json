@@ -4,21 +4,21 @@
     "href": "index.html",
     "title": "Engenharia dos Fluxos",
     "section": "",
-    "text": "Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.\nOs conteúdos exploram temas como:\n\nPython e Engenharia de Software\nDados e Analytics\nDevOps e Observabilidade\nInteligência Artificial\nArquitetura de Sistemas\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\nA proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais.\n\n\n\nAmbiente Python Moderno\nContainers e Docker\nPerformance e Profiling\nAPIs com FastAPI\nDados com Pandas e Spark\nObservabilidade\nInteligência Artificial"
+    "text": "Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.\nOs conteúdos exploram temas como:\n\nPython e Engenharia de Software\nDados e Analytics\nDevOps e Observabilidade\nInteligência Artificial\nArquitetura de Sistemas\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\nA proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais."
   },
   {
     "objectID": "index.html#explorando-sistemas-complexos-através-do-python",
     "href": "index.html#explorando-sistemas-complexos-através-do-python",
     "title": "Engenharia dos Fluxos",
     "section": "",
-    "text": "Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.\nOs conteúdos exploram temas como:\n\nPython e Engenharia de Software\nDados e Analytics\nDevOps e Observabilidade\nInteligência Artificial\nArquitetura de Sistemas\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\nA proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais.\n\n\n\nAmbiente Python Moderno\nContainers e Docker\nPerformance e Profiling\nAPIs com FastAPI\nDados com Pandas e Spark\nObservabilidade\nInteligência Artificial"
+    "text": "Este projeto reúne estudos, experimentos e reflexões sobre como pessoas, processos, dados e sistemas se conectam.\nOs conteúdos exploram temas como:\n\nPython e Engenharia de Software\nDados e Analytics\nDevOps e Observabilidade\nInteligência Artificial\nArquitetura de Sistemas\nProcessos Organizacionais\nComunicação em Sistemas Complexos\n\nA proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais."
   },
   {
     "objectID": "index.html#artigos",
     "href": "index.html#artigos",
     "title": "Engenharia dos Fluxos",
     "section": "Artigos",
-    "text": "Artigos"
+    "text": "Artigos\n\n\n\n\n\n\n\n\n\n\nControlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container\n\n\nUso de containers para aplicações Python.\n\n\n\n\n\nJul 20, 2026\n\n\nDaniela Carvalho\n\n\n\n\n\n\n\n\n\n\n\n\nA metamorfose do desenvolvimento de aplicações em Python: Docker e Containers\n\n\nPrimeiros passos para usar Docker com Python, incluindo construção de imagens, execução de containers e melhores práticas para desenvolvimento e implantação.\n\n\n\n\n\nJul 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProjeto Python: Explorando sistemas complexos\n\n\n\n\n\n\n\n\nJun 24, 2026\n\n\nDaniela Carvalho\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/001-projeto-python/index.html",

@@ -24,17 +24,9 @@ Os conteúdos exploram temas como:
 
 A proposta é investigar como os fluxos de informação moldam organizações, tecnologias e produtos digitais.
 
-### Séries em desenvolvimento
 
-- Ambiente Python Moderno
-- Containers e Docker
-- Performance e Profiling
-- APIs com FastAPI
-- Dados com Pandas e Spark
-- Observabilidade
-- Inteligência Artificial
 
 ## Artigos
 
-::: (#artigos}
+::: {#artigos}
 :::
