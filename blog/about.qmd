@@ -2,9 +2,9 @@
 title: "Sobre"
 ---
 
-# Sobre o Engenharia dos Fluxos
+# Engenharia dos Fluxos
 
-O Engenharia dos Fluxos é um projeto dedicado ao estudo de sistemas complexos por meio da interseção entre comunicação, dados, engenharia de software e inteligência artificial.
+O **Engenharia dos Fluxos** é um projeto dedicado ao estudo de sistemas complexos por meio da interseção entre comunicação, dados, engenharia de software e inteligência artificial.
 
 A proposta nasceu da percepção de que os desafios tecnológicos raramente são apenas técnicos. A forma como pessoas, equipes, processos e sistemas se comunicam influencia diretamente a arquitetura das soluções construídas.
 
