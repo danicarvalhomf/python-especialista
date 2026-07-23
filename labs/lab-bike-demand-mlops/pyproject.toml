@@ -1,0 +1,21 @@
+[project]
+name = "lab-bike-demand-mlops"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.139.2",
+    "joblib>=1.5.3",
+    "jupyterlab>=4.6.2",
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.1",
+    "pandas>=3.0.5",
+    "plotly>=6.9.0",
+    "psycopg[binary]>=3.3.4",
+    "python-dotenv>=1.2.2",
+    "scikit-learn>=1.9.0",
+    "sqlalchemy>=2.0.51",
+    "uvicorn>=0.51.0",
+    "vizro>=0.1.59",
+]
