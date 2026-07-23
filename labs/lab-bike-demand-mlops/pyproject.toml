@@ -19,3 +19,8 @@ dependencies = [
     "uvicorn>=0.51.0",
     "vizro>=0.1.59",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
