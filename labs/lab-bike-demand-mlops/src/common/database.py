@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 
+from src.common.schema import metadata
 from src.config import(
     DATABASE_HOST,
     DATABASE_PORT,
@@ -20,3 +21,7 @@ def get_engine():
         DATABASE_URL,
         pool_pre_ping=True
     )
+
+def create_database_tables() -> None:
+    engine = get_engine()
+    metadata.create_all(engine)
