@@ -1,15 +1,14 @@
 FROM python:3.12-slim
 
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 WORKDIR /app
 
 COPY pyproject.toml uv.lock ./
 
-RUN pip install uv
-
-RUN uv sync --no-dev
+RUN uv sync --frozen --no-dev
 
 COPY . .
 
 EXPOSE 8000
-
-CMD ["uv", "run", "uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8050

@@ -23,7 +23,8 @@ flowchart LR
 - **`src/training`**: split temporal (sem shuffle, evitando vazamento de dados), treino de um modelo baseline (`DummyRegressor`) e do modelo principal (`HistGradientBoostingRegressor`), avaliação (MAE, RMSE, R²) e persistência do modelo (`models/`) e das métricas (`reports/training_metrics.json`).
 - **`src/prediction`**: carrega o modelo treinado e monta o dataframe de entrada com as mesmas features usadas no treino.
 - **`src/api`**: API FastAPI que expõe os endpoints `/health` e `/predict`, carregando o modelo no `lifespan` da aplicação.
-- **`src/dashboard`** e **`src/monitoring`**: pacotes reservados para o dashboard de visualização e monitoramento do modelo (ainda não implementados).
+- **`src/dashboard`**: dashboard Vizro que exibe KPIs (MAE, RMSE, R²) e gráficos de demanda real vs. prevista a partir da tabela `bike_demand_predictions` e de `reports/training_metrics.json`.
+- **`src/monitoring`**: pacote reservado para o monitoramento do modelo (ainda não implementado).
 - **PostgreSQL**: banco relacional que armazena os dados brutos e as features, orquestrado via Docker Compose com healthcheck.
 - **Docker**: a API é empacotada em um `Dockerfile` próprio (imagem `python:3.12-slim` + `uv`) e orquestrada junto do PostgreSQL pelo `compose.yaml`.
 
@@ -54,7 +55,7 @@ labs/lab-bike-demand-mlops/
 │   ├── training/              # train_model.py
 │   ├── prediction/            # predict.py
 │   ├── api/                   # main.py (FastAPI), schemas.py
-│   ├── dashboard/              # (reservado)
+│   ├── dashboard/              # main.py (Vizro)
 │   └── monitoring/             # (reservado)
 └── tests/                    # Testes com pytest
 ```
@@ -106,7 +107,24 @@ uv run uvicorn src.api.main:app --reload
 
 Com o servidor rodando, a documentação interativa (Swagger UI) fica disponível em http://127.0.0.1:8000/docs, além dos endpoints `GET /health` e `POST /predict`.
 
-### 6. Rodar os testes
+#### Documentação da API
+
+Com a aplicação em execução, a documentação interativa está disponível em:
+
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+- OpenAPI JSON: `http://localhost:8000/openapi.json`
+
+A interface Swagger permite validar o contrato da API e executar requisições
+diretamente pelo navegador.
+
+### 6. Rodar o dashboard
+
+```bash
+uv run python -m src.dashboard.main
+```
+
+### 7. Rodar os testes
 
 ```bash
 uv run pytest
@@ -131,7 +149,7 @@ uv run pytest
 - [x] Feature Engineering
 - [x] Treinamento
 - [x] API
-- [ ] Dashboard
+- [x] Dashboard
 - [x] Docker
 - [x] Docker Compose
 - [ ] Monitoramento
