@@ -26,5 +26,22 @@ services:
 
     restart: unless-stopped
 
+  api:
+      build: .
+      container_name: bike-api
+
+      env_file:
+        - .env
+
+      depends_on:
+        postgres:
+          condition: service_healthy
+
+      ports:
+        - "8000:8000"
+
+
+
 volumes:
   bike_postgres_data:
+

@@ -1,0 +1,42 @@
+{
+  "model": "HistGradientBoostingRegressor",
+  "training_rows": 13903,
+  "test_rows": 3476,
+  "training_start": "2011-01-01T00:00:00",
+  "training_end": "2012-08-07T11:00:00",
+  "test_start": "2012-08-07T12:00:00",
+  "test_end": "2012-12-31T23:00:00",
+  "baseline_metrics": {
+    "mae": 174.98460136882977,
+    "rmse": 232.60837481037086,
+    "r2": -0.11299526466191145
+  },
+  "model_metrics": {
+    "mae": 40.60588119201267,
+    "rmse": 62.92858392881546,
+    "r2": 0.9185411001000964
+  },
+  "feature_columns": [
+    "year",
+    "month",
+    "day",
+    "hour",
+    "weekday",
+    "is_weekend",
+    "season",
+    "holiday",
+    "working_day",
+    "weather_situation",
+    "temperature",
+    "apparent_temperature",
+    "humidity",
+    "wind_speed",
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "month_sin",
+    "month_cos"
+  ],
+  "model_path": "/home/dani/Dropbox/Python_Path/python-especialista/labs/lab-bike-demand-mlops/models/bike_demand_model.joblib"
+}
