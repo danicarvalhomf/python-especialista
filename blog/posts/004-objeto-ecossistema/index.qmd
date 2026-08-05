@@ -7,7 +7,7 @@ categories:
   - docker
   - docker-compose
   - mlops
-description: "A cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional."
+description: "A cadeia de significação permeia um conjunto de sistemas, com arquitetura pensada para proporcionar valor informacional."
 lab: ../../labs/lab-bike-demand-mlops
 draft: false
 toc: true
