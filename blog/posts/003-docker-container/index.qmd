@@ -1,6 +1,6 @@
 ---
 title: "Controlando a metamorfose do desenvolvimento e da disponibilização de conteúdo com uso de container"
-date: today
+date: 2026-07-24
 author: "Daniela Carvalho"
 categories:
   - python

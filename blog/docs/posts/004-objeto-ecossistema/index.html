@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Daniela Carvalho">
-<meta name="dcterms.date" content="2026-07-01">
-<meta name="description" content="Uma descrição do post.">
+<meta name="dcterms.date" content="2026-08-05">
+<meta name="description" content="A cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional.">
 
-<title>Título do post – Engenharia dos Fluxos</title>
+<title>Do objeto ao ecossistema: organizando uma pipeline de Machine Learning com Docker Compose – Engenharia dos Fluxos</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,27 +29,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c0b644deb189193455ec68b0ea761b3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-fc60611a3d478e2f1b2512a3600de400.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c0b644deb189193455ec68b0ea761b3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c0b644deb189193455ec68b0ea761b3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-fc60611a3d478e2f1b2512a3600de400.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c0b644deb189193455ec68b0ea761b3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -86,15 +86,17 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
 </script>
-<meta name="quarto:status" content="draft">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Título do post – Engenharia dos Fluxos">
-<meta property="og:description" content="Uma descrição do post.">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Do objeto ao ecossistema: organizando uma pipeline de Machine Learning com Docker Compose – Engenharia dos Fluxos">
+<meta property="og:description" content="A cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional.">
 <meta property="og:site_name" content="Engenharia dos Fluxos">
-<meta name="twitter:title" content="Título do post – Engenharia dos Fluxos">
-<meta name="twitter:description" content="Uma descrição do post.">
+<meta name="twitter:title" content="Do objeto ao ecossistema: organizando uma pipeline de Machine Learning com Docker Compose – Engenharia dos Fluxos">
+<meta name="twitter:description" content="A cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -263,11 +265,11 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Engenharia dos Fluxos</span>
     </a>
   </div>
@@ -278,15 +280,15 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts.html"> 
+    <a class="nav-link" href="../../posts.html"> 
 <span class="menu-text">Artigos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Sobre</span></a>
   </li>  
 </ul>
@@ -306,10 +308,14 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#ecossistema-de-significação" id="toc-ecossistema-de-significação" class="nav-link active" data-scroll-target="#ecossistema-de-significação">Ecossistema de Significação</a>
+  <ul class="collapse">
+  <li><a href="#tecnologias" id="toc-tecnologias" class="nav-link" data-scroll-target="#tecnologias">Tecnologias</a></li>
+  <li><a href="#funcionalidades" id="toc-funcionalidades" class="nav-link" data-scroll-target="#funcionalidades">Funcionalidades</a></li>
+  <li><a href="#pipeline-implementada" id="toc-pipeline-implementada" class="nav-link" data-scroll-target="#pipeline-implementada">Pipeline implementada</a></li>
+  </ul></li>
   <li><a href="#desenvolvimento" id="toc-desenvolvimento" class="nav-link" data-scroll-target="#desenvolvimento">Desenvolvimento</a></li>
-  <li><a href="#ambiente-utilizado" id="toc-ambiente-utilizado" class="nav-link" data-scroll-target="#ambiente-utilizado">Ambiente utilizado</a></li>
-  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais">Considerações finais</a></li>
+  <li><a href="#referência" id="toc-referência" class="nav-link" data-scroll-target="#referência">Referência</a></li>
   </ul>
 </nav>
     </div>
@@ -319,15 +325,18 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Título do post</h1>
+<h1 class="title">Do objeto ao ecossistema: organizando uma pipeline de Machine Learning com Docker Compose</h1>
   <div class="quarto-categories">
     <div class="quarto-category">python</div>
+    <div class="quarto-category">docker</div>
+    <div class="quarto-category">docker-compose</div>
+    <div class="quarto-category">mlops</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Uma descrição do post.
+    A cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional.
   </div>
 </div>
 
@@ -344,7 +353,7 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">August 5, 2026</p>
     </div>
   </div>
   
@@ -356,17 +365,179 @@ gtag('config', 'G-H2WW8TV4X8', { 'anonymize_ip': true});
 </header>
 
 
-<section id="introdução" class="level2">
-<h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
+<p>É muito comum, nos sistemas complexos, precisar de um ecossistema com diversas soluções interligadas, diferentes tecnologias e abordagens, que consigam trabalhar em um ambiente controlado.</p>
+<p>Neste post eu quis exemplificar essa situação porque a cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional. Da mesma forma que, para Baudrillard, o significado do objeto emerge de sua inserção em um sistema de objetos, neste laboratório o valor informacional não está em cada componente isoladamente, mas nas relações estabelecidas entre banco de dados, modelo, API e dashboard.</p>
+<p>Para Baudrillard (1993), é necessário definir, desde o início, um plano de racionalidade do objeto, isto é, uma estruturação tecnológica objetiva. Neste sentido, para oferecer um sistema que permita fazer previsões de demanda de bicicletas, ou seja, um objeto de previsão. Chamo aqui de “objeto de previsão” o artefato computacional capaz de produzir uma estimativa de demanda a partir da organização de diferentes componentes tecnológicos.</p>
+<p>Precisei estruturar, de forma tecnologicamente objetiva, os componentes necessários para dar suporte a esse objeto de previsão, ou seja, “estruturas do arranjo”, que em “fontes de energia traduz-se portanto por uma abstração igual na praxis humana dos objetos. […] para atenuar a abstração absoluta da ação à distância, o que chamamos de gestual do controle […]” (p.&nbsp;55).</p>
+<p>Dessa forma, poderíamos associar ao que se diz: “cada transição de um sistema para outro melhor integrada, cada comutação no interior de um sistema já estruturado, cada síntese de funções, faz surgir um sentido, uma pertinência objetiva dos indivíduos que a utilização […]” (BAUDRILLARD, 1993, p.&nbsp;13).</p>
+<p>Como estudo de caso, foi utilizado o <a href="https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset">Bike Sharing Dataset</a>, disponibilizado pela UC Irvine Machine Learning Repository.</p>
+<p>Foram utilizados módulos desenvolvidos em Python para a ingestão de dados no banco de dados Postgres, em tabelas separadas por momento. O primeiro foi criar a tabela com os dados brutos. Destes, criou-se outra tabela com os dados utilizados no modelo de previsão, ou seja, as features. Essas foram utilizadas para treinar o modelo e também para fazer previsões para um período futuro em relação ao período de treinamento, que foi apresentado em um dashboard criado com o framework Vizro.</p>
+<p>Este <a href="https://github.com/danicarvalhomf/python-especialista/tree/main/labs/lab-bike-demand-mlops">laboratório</a> contemplou várias etapas e, por isso, fundamentará mais de um post no blog.</p>
+<section id="ecossistema-de-significação" class="level2">
+<h2 class="anchored" data-anchor-id="ecossistema-de-significação">Ecossistema de Significação</h2>
+<p>Para dar suporte a todo o fluxo de informação, optou-se por uma arquitetura moderna que pudesse ser hospedada em serviços na nuvem, o que resultou em um dashboard, uma API com dados de previsão, boas práticas de testes unitários e uma solução orquestrada via Docker Compose.</p>
+<section id="tecnologias" class="level3">
+<h3 class="anchored" data-anchor-id="tecnologias">Tecnologias</h3>
+<ul>
+<li>Python 3.12</li>
+<li>uv (gerenciamento de ambiente e dependências)</li>
+<li>PostgreSQL</li>
+<li>SQLAlchemy</li>
+<li>Pandas</li>
+<li>NumPy</li>
+<li>Scikit-learn</li>
+<li>HistGradientBoostingRegressor</li>
+<li>FastAPI</li>
+<li>Pydantic</li>
+<li>Vizro</li>
+<li>Plotly</li>
+<li>Docker</li>
+<li>Docker Compose</li>
+<li>Pytest</li>
+<li>Joblib</li>
+<li>UCI Machine Learning Repository (Bike Sharing Dataset)</li>
+</ul>
+</section>
+<section id="funcionalidades" class="level3">
+<h3 class="anchored" data-anchor-id="funcionalidades">Funcionalidades</h3>
+<ul>
+<li>Ingestão automatizada do dataset</li>
+<li>Persistência dos dados em PostgreSQL</li>
+<li>Feature Engineering</li>
+<li>Construção do dataset de treinamento</li>
+<li>Treinamento de modelo de Machine Learning</li>
+<li>Comparação com baseline</li>
+<li>Avaliação do modelo (MAE, RMSE e R²)</li>
+<li>Persistência do modelo treinado</li>
+<li>Serviço de inferência via FastAPI</li>
+<li>Validação de entrada com Pydantic</li>
+<li>Testes automatizados da API</li>
+<li>Testes automatizados da pipeline</li>
+<li>Geração automática das previsões</li>
+<li>Persistência das previsões</li>
+<li>Dashboard de monitoramento do modelo</li>
+<li>Ambiente totalmente containerizado com Docker Compose</li>
+</ul>
+</section>
+<section id="pipeline-implementada" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-implementada">Pipeline implementada</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[Dataset]
+    B[Data Ingestion]
+    C[(PostgreSQL)]
+    D[Feature Engineering]
+    E[Training Dataset]
+    F[Model Training]
+    G[(Model Registry)]
+    H[FastAPI]
+    I[Vizro Dashboard]
+
+    A --&gt; B --&gt; C --&gt; D --&gt; E --&gt; F --&gt; G --&gt; H --&gt; I
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="desenvolvimento" class="level2">
 <h2 class="anchored" data-anchor-id="desenvolvimento">Desenvolvimento</h2>
+<p>Como houve muitas etapas, foi um laboratório mais completo, não só de sistema, mas também de ecossistema. Não vou detalhar o desenvolvimento neste post, como tenho feito nos anteriores; vou deixar para os próximos, separados por pipeline.</p>
+<p>Porém, neste ponto, acho importante ressaltar que a mesma abordagem pode ser abstraída para outro conjunto de tecnologias. O objetivo deste laboratório não foi aprender uma tecnologia específica, mas compreender os conceitos que permanecem quando as tecnologias mudam.</p>
+<p>Portanto, gostaria que o leitor focasse mais nos conceitos, do que proprimamente na tecnologia que pode ser projetada em diferentes abordagens, como apresento na tabela abaixo:</p>
+<p><strong>TABELA 1.</strong> Correspondência conceitual entre a arquitetura local e diferentes ecossistemas computacionais.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Conceito</th>
+<th>Local</th>
+<th>GCP</th>
+<th>AWS</th>
+<th>Azure</th>
+<th>Databricks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Armazenamento</td>
+<td>PostgreSQL</td>
+<td>BigQuery</td>
+<td>RDS</td>
+<td>Azure PostgreSQL</td>
+<td>Delta Lake</td>
+</tr>
+<tr class="even">
+<td>Feature Engineering</td>
+<td>Pandas</td>
+<td>Dataflow</td>
+<td>Glue</td>
+<td>Data Factory</td>
+<td>Spark</td>
+</tr>
+<tr class="odd">
+<td>Modelo</td>
+<td>joblib</td>
+<td>Vertex AI</td>
+<td>SageMaker</td>
+<td>Azure ML</td>
+<td>MLflow</td>
+</tr>
+<tr class="even">
+<td>API</td>
+<td>FastAPI</td>
+<td>Cloud Run</td>
+<td>ECS</td>
+<td>App Service</td>
+<td>Model Serving</td>
+</tr>
+<tr class="odd">
+<td>Dashboard</td>
+<td>Vizro</td>
+<td>Looker</td>
+<td>QuickSight</td>
+<td>Power BI</td>
+<td>Databricks Dashboard</td>
+</tr>
+<tr class="even">
+<td>Testes</td>
+<td>Pytest</td>
+<td>Cloud Build</td>
+<td>CodeBuild</td>
+<td>Azure DevOps</td>
+<td>Databricks CI</td>
+</tr>
+</tbody>
+</table>
+<p>A escolha da abordagem tecnológica depende do potencial de valor para quem está sendo ofertado, seja por otimização de recursos, seja por estratégia de diferenciação. Nesse contexto, acredito que se assemelha à “abstração do poderio”, em que o “poderio técnico não pode mais ser mediatizado: não tem medida comum com o homem e o corpo. Não pode ser mais simbolizado: as formas funcionais pode somente conotá-lo”.</p>
+<p>Assim, o valor do sistema não está apenas em cada tecnologia empregada, mas também na organização das relações entre elas. É essa integração que permite transformar componentes independentes em um objeto computacional coerente, capaz de produzir significado por meio da informação disponibilizada.</p>
+<p>Este laboratório representa uma implementação específica desse ecossistema. Nos próximos artigos, cada componente será analisado individualmente, preservando a compreensão de que seu significado emerge das relações estabelecidas com os demais elementos da arquitetura.</p>
+<p>Nos próximos posts pretendo abordar a série:</p>
+<p>Parte 1 - Estrutura do projeto e arquitetura.</p>
+<p>Parte 2 - Ingestão de dados com SQLAlchemy.</p>
+<p>Parte 3 - Feature Engineering.</p>
+<p>Parte 4 - Treinamento do modelo.</p>
+<p>Parte 5 - API REST com FastAPI.</p>
+<p>Parte 6 - Testes automatizados com Pytest.</p>
+<p>Parte 7 - Docker Compose e ambiente reproduzível.</p>
+<p>Parte 8 - Dashboard de monitoramento com Vizro.</p>
 </section>
-<section id="ambiente-utilizado" class="level2">
-<h2 class="anchored" data-anchor-id="ambiente-utilizado">Ambiente utilizado</h2>
-</section>
-<section id="considerações-finais" class="level2">
-<h2 class="anchored" data-anchor-id="considerações-finais">Considerações finais</h2>
+<section id="referência" class="level2">
+<h2 class="anchored" data-anchor-id="referência">Referência</h2>
+<p>BAUDRILLARD, J. <strong>O Sistema dos Objetos</strong>. São Paulo: Ed. Perspectiva, 1993.</p>
 
 
 </section>

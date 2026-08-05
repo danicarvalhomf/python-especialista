@@ -1,6 +1,7 @@
 ---
 title: "A metamorfose do desenvolvimento de aplicações em Python: Docker e Containers"
 date: 2026-07-01
+author: "Daniela Carvalho"
 categories:
   - python
   - docker

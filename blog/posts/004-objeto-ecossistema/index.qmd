@@ -1,0 +1,141 @@
+---
+title: "Do objeto ao ecossistema: organizando uma pipeline de Machine Learning com Docker Compose"
+date: 2026-08-05
+author: "Daniela Carvalho"
+categories:
+  - python
+  - docker
+  - docker-compose
+  - mlops
+description: "A cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional."
+lab: ../../labs/lab-bike-demand-mlops
+draft: false
+toc: true
+---
+
+É muito comum, nos sistemas complexos, precisar de um ecossistema com diversas soluções interligadas, diferentes tecnologias e abordagens, que consigam trabalhar em um ambiente controlado.
+
+Neste post eu quis exemplificar essa situação porque a cadeia de significação permeia uma cadeia de sistemas, com arquitetura pensada para proporcionar valor informacional. Da mesma forma que, para Baudrillard, o significado do objeto emerge de sua inserção em um sistema de objetos, neste laboratório o valor informacional não está em cada componente isoladamente, mas nas relações estabelecidas entre banco de dados, modelo, API e dashboard.
+
+Para Baudrillard (1993), é necessário definir, desde o início, um plano de racionalidade do objeto, isto é, uma estruturação tecnológica objetiva. Neste sentido, para oferecer um sistema que permita fazer previsões de demanda de bicicletas, ou seja, um objeto de previsão. Chamo aqui de "objeto de previsão" o artefato computacional capaz de produzir uma estimativa de demanda a partir da organização de diferentes componentes tecnológicos.
+
+Precisei estruturar, de forma tecnologicamente objetiva, os componentes necessários para dar suporte a esse objeto de previsão, ou seja, "estruturas do arranjo", que em "fontes de energia traduz-se portanto por uma abstração igual na praxis humana dos objetos. [...] para atenuar a abstração absoluta da ação à distância, o que chamamos de gestual do controle [...]" (p. 55).
+
+Dessa forma, poderíamos associar ao que se diz: "cada transição de um sistema para outro melhor integrada, cada comutação no interior de um sistema já estruturado, cada síntese de funções, faz surgir um sentido, uma pertinência objetiva dos indivíduos que a utilização [...]" (BAUDRILLARD, 1993, p. 13).
+
+Como estudo de caso, foi utilizado o [Bike Sharing Dataset](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset), disponibilizado pela UC Irvine Machine Learning Repository. 
+
+Foram utilizados módulos desenvolvidos em Python para a ingestão de dados no banco de dados Postgres, em tabelas separadas por momento. O primeiro foi criar a tabela com os dados brutos. Destes, criou-se outra tabela com os dados utilizados no modelo de previsão, ou seja, as features. Essas foram utilizadas para treinar o modelo e também para fazer previsões para um período futuro em relação ao período de treinamento, que foi apresentado em um dashboard criado com o framework Vizro.
+
+Este [laboratório](https://github.com/danicarvalhomf/python-especialista/tree/main/labs/lab-bike-demand-mlops) contemplou várias etapas e, por isso, fundamentará mais de um post no blog.
+
+
+## Ecossistema de Significação
+
+Para dar suporte a todo o fluxo de informação, optou-se por uma arquitetura moderna que pudesse ser hospedada em serviços na nuvem, o que resultou em um dashboard, uma API com dados de previsão, boas práticas de testes unitários e uma solução orquestrada via Docker Compose.
+ 
+### Tecnologias
+
+- Python 3.12
+- uv (gerenciamento de ambiente e dependências)
+- PostgreSQL
+- SQLAlchemy
+- Pandas
+- NumPy
+- Scikit-learn
+- HistGradientBoostingRegressor
+- FastAPI
+- Pydantic
+- Vizro
+- Plotly
+- Docker
+- Docker Compose
+- Pytest
+- Joblib
+- UCI Machine Learning Repository (Bike Sharing Dataset)
+
+### Funcionalidades
+
+- Ingestão automatizada do dataset
+- Persistência dos dados em PostgreSQL
+- Feature Engineering
+- Construção do dataset de treinamento
+- Treinamento de modelo de Machine Learning
+- Comparação com baseline
+- Avaliação do modelo (MAE, RMSE e R²)
+- Persistência do modelo treinado
+- Serviço de inferência via FastAPI
+- Validação de entrada com Pydantic
+- Testes automatizados da API
+- Testes automatizados da pipeline
+- Geração automática das previsões
+- Persistência das previsões
+- Dashboard de monitoramento do modelo
+- Ambiente totalmente containerizado com Docker Compose
+
+### Pipeline implementada
+
+```{mermaid}
+flowchart TD
+    A[Dataset]
+    B[Data Ingestion]
+    C[(PostgreSQL)]
+    D[Feature Engineering]
+    E[Training Dataset]
+    F[Model Training]
+    G[(Model Registry)]
+    H[FastAPI]
+    I[Vizro Dashboard]
+
+    A --> B --> C --> D --> E --> F --> G --> H --> I
+```
+
+
+## Desenvolvimento
+Como houve muitas etapas, foi um laboratório mais completo, não só de sistema, mas também de ecossistema. Não vou detalhar o desenvolvimento neste post, como tenho feito nos anteriores; vou deixar para os próximos, separados por pipeline.
+
+Porém, neste ponto, acho importante ressaltar que a mesma abordagem pode ser abstraída para outro conjunto de tecnologias. O objetivo deste laboratório não foi aprender uma tecnologia específica, mas compreender os conceitos que permanecem quando as tecnologias mudam.
+
+Portanto, gostaria que o leitor focasse mais nos conceitos, do que proprimamente na tecnologia que pode ser projetada em diferentes abordagens, como apresento na tabela abaixo:
+
+**TABELA 1.** Correspondência conceitual entre a arquitetura local e diferentes ecossistemas computacionais.
+
+| Conceito | Local | GCP | AWS | Azure | Databricks |
+|---|---|---|---|---|---|
+| Armazenamento | PostgreSQL | BigQuery | RDS | Azure PostgreSQL | Delta Lake |
+| Feature Engineering | Pandas | Dataflow | Glue | Data Factory | Spark |
+| Modelo | joblib | Vertex AI | SageMaker | Azure ML | MLflow |
+| API | FastAPI | Cloud Run | ECS | App Service | Model Serving |
+| Dashboard | Vizro | Looker | QuickSight | Power BI | Databricks Dashboard |
+| Testes | Pytest | Cloud Build | CodeBuild | Azure DevOps | Databricks CI |
+
+
+
+A escolha da abordagem tecnológica depende do potencial de valor para quem está sendo ofertado, seja por otimização de recursos, seja por estratégia de diferenciação. Nesse contexto, acredito que se assemelha à "abstração do poderio", em que o "poderio técnico não pode mais ser mediatizado: não tem medida comum com o homem e o corpo. Não pode ser mais simbolizado: as formas funcionais pode somente conotá-lo". 
+
+Assim, o valor do sistema não está apenas em cada tecnologia empregada, mas também na organização das relações entre elas. É essa integração que permite transformar componentes independentes em um objeto computacional coerente, capaz de produzir significado por meio da informação disponibilizada.
+
+Este laboratório representa uma implementação específica desse ecossistema. Nos próximos artigos, cada componente será analisado individualmente, preservando a compreensão de que seu significado emerge das relações estabelecidas com os demais elementos da arquitetura.
+
+Nos próximos posts pretendo abordar a série:
+
+Parte 1 - Estrutura do projeto e arquitetura.
+
+Parte 2 - Ingestão de dados com SQLAlchemy.
+
+Parte 3 - Feature Engineering.
+
+Parte 4 - Treinamento do modelo.
+
+Parte 5 - API REST com FastAPI.
+
+Parte 6 - Testes automatizados com Pytest.
+
+Parte 7 - Docker Compose e ambiente reproduzível.
+
+Parte 8 - Dashboard de monitoramento com Vizro.
+
+
+## Referência
+
+BAUDRILLARD, J. **O Sistema dos Objetos**. São Paulo: Ed. Perspectiva, 1993.

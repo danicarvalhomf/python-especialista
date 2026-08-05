@@ -19,5 +19,8 @@
   },
   "posts/003-docker-container/index.qmd": {
     "index.html": "e50704e0"
+  },
+  "posts/004-objeto-ecossistema/index.qmd": {
+    "index.html": "55070c80"
   }
 }
