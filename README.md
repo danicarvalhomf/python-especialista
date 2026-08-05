@@ -61,4 +61,4 @@ Consulte o `README.md` de cada pasta em `labs/` para instruções detalhadas (va
 
 ## Sobre a autora
 
-Daniela Carvalho atua na área de dados e tecnologia, com graduação em Comunicação Social (Publicidade e Propaganda) e em Análise e Desenvolvimento de Sistemas, mestrado em Multimeios, doutorado em Artes e pós-doutorado em Inteligência Artificial. Mais detalhes na página [Sobre](blog/about.qmd) do blog e no [Currículo Lattes](http://lattes.cnpq.br/6174708363093351).
+Daniela Carvalho atua na área de dados e tecnologia, com graduação em Comunicação Social (Publicidade e Propaganda) e em Análise e Desenvolvimento de Sistemas, mestrado em Multimeios, doutorado em Artes e pós-doutorado em Inteligência Artificial. Mais detalhes na página [Sobre](https://danicarvalhomf.github.io/python-especialista/about.html) do blog e no [Currículo Lattes](http://lattes.cnpq.br/6174708363093351).
