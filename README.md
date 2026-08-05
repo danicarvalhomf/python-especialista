@@ -1,6 +1,6 @@
 # Python Especialista
 
-Repositório central dos estudos, experimentos e projetos práticos desenvolvidos por Daniela Carvalho na jornada de especialização em Python, reunindo tanto o blog **Engenharia dos Fluxos** quanto laboratórios técnicos (`labs/`) de engenharia de dados, MLOps, APIs e containers.
+Repositório central dos experimentos e projetos práticos desenvolvidos por Daniela Carvalho, reunindo tanto o blog **Engenharia dos Fluxos** quanto laboratórios técnicos (`labs/`) de engenharia de dados, MLOps, APIs e containers.
 
 - **Repositório principal**: https://github.com/danicarvalhomf/python-especialista/tree/main
 - **Blog (Engenharia dos Fluxos)**: https://danicarvalhomf.github.io/python-especialista
