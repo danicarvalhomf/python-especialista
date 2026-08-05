@@ -8,6 +8,8 @@ O **Engenharia dos Fluxos** é um projeto dedicado ao estudo de sistemas complex
 
 A proposta nasceu da percepção de que os desafios tecnológicos raramente são apenas técnicos. A forma como pessoas, equipes, processos e sistemas se comunicam influencia diretamente a arquitetura das soluções construídas.
 
+Desenvolvo laboratórios públicos para investigar arquitetura de sistemas, machine learning e comunicação computacional, documentando tanto a implementação quanto os fundamentos conceituais.
+
 ## Temas abordados
 
 - Python e Engenharia de Software
